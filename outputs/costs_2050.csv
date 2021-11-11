@@ -100,6 +100,17 @@ HVDC submarine,lifetime,40.0,years,Purvins et al. (2018): https://doi.org/10.101
 Haber-Bosch synthesis,FOM,4.0,%/year,"Estimate, based on methanation plant.",
 Haber-Bosch synthesis,investment,5310107.51,EUR/MW,"Calculated based on Morgan E. 2013: doi:10.7275/11KT-3F59 , Fig. 56, Fig. 58, pg. 207, pg. 210.",
 Haber-Bosch synthesis,lifetime,20.0,years,"Morgan E. 2013: doi:10.7275/11KT-3F59 , pg. 290",
+IC gas,FOM,1.0,%/year,"Danish Energy Agency, technology_data_for_el_and_dh_-_0009.xlsx","06 Gas engines, natural gas:  Fixed O&M"
+IC gas,VOM,4.9,EUR/MWh,"Danish Energy Agency, technology_data_for_el_and_dh_-_0009.xlsx","06 Gas engines, natural gas:  Variable O&M"
+IC gas,c_b,1.04,50oC/100oC,"Danish Energy Agency, technology_data_for_el_and_dh_-_0009.xlsx","06 Gas engines, natural gas:  Cb coefficient"
+IC gas,efficiency,0.48,per unit,"Danish Energy Agency, technology_data_for_el_and_dh_-_0009.xlsx","06 Gas engines, natural gas:  Electricity efficiency, annual average"
+IC gas,investment,850.0,EUR/kW,"Danish Energy Agency, technology_data_for_el_and_dh_-_0009.xlsx","06 Gas engines, natural gas:  Nominal investment"
+IC gas,lifetime,25.0,years,"Danish Energy Agency, technology_data_for_el_and_dh_-_0009.xlsx","06 Gas engines, natural gas:  Technical lifetime"
+IC oil,FOM,2.41,%/year,"Danish Energy Agency, technology_data_for_el_and_dh_-_0009.xlsx",50 Diesel engine farm:  Fixed O&M
+IC oil,VOM,6.0,EUR/MWh,"Danish Energy Agency, technology_data_for_el_and_dh_-_0009.xlsx",50 Diesel engine farm:  Variable O&M
+IC oil,efficiency,0.35,per unit,"Danish Energy Agency, technology_data_for_el_and_dh_-_0009.xlsx","50 Diesel engine farm:  Electricity efficiency, annual average"
+IC oil,investment,336.0,EUR/kW,"Danish Energy Agency, technology_data_for_el_and_dh_-_0009.xlsx",50 Diesel engine farm:  Specific investment
+IC oil,lifetime,25.0,years,"Danish Energy Agency, technology_data_for_el_and_dh_-_0009.xlsx",50 Diesel engine farm:  Technical lifetime
 LNG storage tank,FOM,2.0,%/year,"Guesstimate, based on H2 (l) storage tank with comparable requirements.",
 LNG storage tank,investment,611.59,EUR/m^3,"Hurskainen 2019, https://cris.vtt.fi/en/publications/liquid-organic-hydrogen-carriers-lohc-concept-evaluation-and-tech pg. 46 (59).",
 LNG storage tank,lifetime,20.0,years,"Guesstimate, based on H2 (l) storage tank with comparable requirements.",
@@ -144,6 +155,12 @@ PHS,FOM,1.0,%/year,DIW DataDoc http://hdl.handle.net/10419/80348, from old pypsa
 PHS,efficiency,0.75,per unit,DIW DataDoc http://hdl.handle.net/10419/80348, from old pypsa cost assumptions
 PHS,investment,2208.16,EUR/kWel,DIW DataDoc http://hdl.handle.net/10419/80348, from old pypsa cost assumptions
 PHS,lifetime,80.0,years,IEA2010, from old pypsa cost assumptions
+SCGT,FOM,3.46,%/year,"Danish Energy Agency, technology_data_for_el_and_dh_-_0009.xlsx","04 Gas turb. simple cycle, L:  Fixed O&M"
+SCGT,VOM,4.0,EUR/MWh,"Danish Energy Agency, technology_data_for_el_and_dh_-_0009.xlsx","04 Gas turb. simple cycle, L:  Variable O&M"
+SCGT,c_b,1.0,50oC/100oC,"Danish Energy Agency, technology_data_for_el_and_dh_-_0009.xlsx","04 Gas turb. simple cycle, L:  Cb coefficient"
+SCGT,efficiency,0.43,per unit,"Danish Energy Agency, technology_data_for_el_and_dh_-_0009.xlsx","04 Gas turb. simple cycle, L:  Electricity efficiency, annual average"
+SCGT,investment,520.0,EUR/kW,"Danish Energy Agency, technology_data_for_el_and_dh_-_0009.xlsx","04 Gas turb. simple cycle, L:  Nominal investment"
+SCGT,lifetime,25.0,years,"Danish Energy Agency, technology_data_for_el_and_dh_-_0009.xlsx","04 Gas turb. simple cycle, L:  Technical lifetime"
 SMR,FOM,5.4,%/year,https://www.gov.uk/government/publications/hydrogen-supply-chain-evidence-base; slide 42 assumption for 2030, from old pypsa cost assumptions
 SMR,efficiency,0.74,per unit,https://www.gov.uk/government/publications/hydrogen-supply-chain-evidence-base; slide 42 assumption for 2030, from old pypsa cost assumptions
 SMR,investment,540.56,EUR/kWCH4,https://www.gov.uk/government/publications/hydrogen-supply-chain-evidence-base; slide 42 assumption for 2030; GBP 466 exchange 1.16, from old pypsa cost assumptions
@@ -446,5 +463,21 @@ solar-utility,lifetime,40.0,years,"Danish Energy Agency, technology_data_for_el_
 solid biomass,CO2 intensity,0.3,tCO2/MWh_th,TODO,
 solid biomass,fuel,25.2,EUR/MWh_th,Is a 100% renewable European power system feasible by 2050?,
 uranium,fuel,2.6,EUR/MWh_th,Lazard s Levelized Cost of Energy Analysis - Version 13.0,
+waste,FOM,2.77,%/year,"Danish Energy Agency, technology_data_for_el_and_dh_-_0009.xlsx","08 WtE CHP, Medium:  Fixed O&M"
+waste,VOM,23.93,EUR/MWh_e,"Danish Energy Agency, technology_data_for_el_and_dh_-_0009.xlsx","08 WtE CHP, Medium:  Variable O&M "
+waste,c_b,0.31,40°C/80°C,"Danish Energy Agency, technology_data_for_el_and_dh_-_0009.xlsx","08 WtE CHP, Medium:  Cb coefficient"
+waste,c_v,1.0,40°C/80°C,"Danish Energy Agency, technology_data_for_el_and_dh_-_0009.xlsx","08 WtE CHP, Medium:  Cv coefficient"
+waste,efficiency,0.23,per unit,"Danish Energy Agency, technology_data_for_el_and_dh_-_0009.xlsx","08 WtE CHP, Medium:  Electricity efficiency, net, annual average"
+waste,efficiency-heat,0.79,per unit,"Danish Energy Agency, technology_data_for_el_and_dh_-_0009.xlsx","08 WtE CHP, Medium:  Heat efficiency, net, annual average"
+waste,investment,7538.88,EUR/kW_e,"Danish Energy Agency, technology_data_for_el_and_dh_-_0009.xlsx","08 WtE CHP, Medium:  Nominal investment "
+waste,lifetime,25.0,years,"Danish Energy Agency, technology_data_for_el_and_dh_-_0009.xlsx","08 WtE CHP, Medium:  Technical lifetime"
 water tank charger,efficiency,0.84,per unit,"Danish Energy Agency, technology_data_catalogue_for_energy_storage.xlsx",:  efficiency from sqr(Round trip efficiency)
 water tank discharger,efficiency,0.84,per unit,"Danish Energy Agency, technology_data_catalogue_for_energy_storage.xlsx",:  efficiency from sqr(Round trip efficiency)
+woodpellets,FOM,3.98,%/year,"Danish Energy Agency, technology_data_for_el_and_dh_-_0009.xlsx","09b Wood Pellets, Medium:  Fixed O&M"
+woodpellets,VOM,1.88,EUR/MWh_e,"Danish Energy Agency, technology_data_for_el_and_dh_-_0009.xlsx","09b Wood Pellets, Medium:  Variable O&M "
+woodpellets,c_b,0.45,40°C/80°C,"Danish Energy Agency, technology_data_for_el_and_dh_-_0009.xlsx","09b Wood Pellets, Medium:  Cb coefficient"
+woodpellets,c_v,1.0,40°C/80°C,"Danish Energy Agency, technology_data_for_el_and_dh_-_0009.xlsx","09b Wood Pellets, Medium:  Cv coefficient"
+woodpellets,efficiency,0.29,per unit,"Danish Energy Agency, technology_data_for_el_and_dh_-_0009.xlsx","09b Wood Pellets, Medium:  Electricity efficiency, net, annual average"
+woodpellets,efficiency-heat,0.7,per unit,"Danish Energy Agency, technology_data_for_el_and_dh_-_0009.xlsx","09b Wood Pellets, Medium:  Heat efficiency, net, annual average"
+woodpellets,investment,2714.2,EUR/kW_e,"Danish Energy Agency, technology_data_for_el_and_dh_-_0009.xlsx","09b Wood Pellets, Medium:  Nominal investment "
+woodpellets,lifetime,25.0,years,"Danish Energy Agency, technology_data_for_el_and_dh_-_0009.xlsx","09b Wood Pellets, Medium:  Technical lifetime"

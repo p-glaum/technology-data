@@ -59,6 +59,9 @@ sheet_names = {'onwind': '20 Onshore turbines',
                'solar-rooftop': '22 Photovoltaics Small',
                'OCGT': '52 OCGT - Natural gas',
                'CCGT': '05 Gas turb. CC, steam extract.',
+               'SCGT': '04 Gas turb. simple cycle, L',
+               'IC gas': '06 Gas engines, natural gas',
+               'IC oil': '50 Diesel engine farm',
                'oil': '50 Diesel engine farm',
                'biomass CHP': '09c Straw, Large, 40 degree',
                'biomass EOP': '09c Straw, Large, 40 degree',
@@ -90,6 +93,8 @@ sheet_names = {'onwind': '20 Onshore turbines',
                'cement capture' : '401.c Post comb - Cement kiln',
                'methanolisation': '98 Methanol from power',
                'Fischer-Tropsch': '102 Hydrogen to Jet',
+               'waste': '08 WtE CHP, Medium',
+               'woodpellets': '09b Wood Pellets, Medium',
                # 'electricity distribution rural': '101 2 el distri Rural',
                # 'electricity distribution urban': '101 4 el distri  city',
                # 'gas distribution rural': '102 7 gas  Rural',
@@ -108,6 +113,9 @@ uncrtnty_lookup = {'onwind': 'J:K',
                     'solar-rooftop': '',
                     'OCGT': 'I:J',
                     'CCGT': 'I:J',
+                    'SCGT': 'I:J',
+                    'IC gas': 'I:J',
+                    'IC oil': 'I:J',
                     'oil': 'I:J',
                     'biomass CHP': 'I:J',
                     'biomass EOP': 'I:J',
@@ -137,6 +145,8 @@ uncrtnty_lookup = {'onwind': 'J:K',
                     'industrial heat pump medium temperature':'H:I',
                     'Fischer-Tropsch': 'I:J',
                     'methanolisation': 'J:K',
+                    'waste': 'I:J',
+                    'woodpellets': 'I:J',
 }
 
 
@@ -1297,6 +1307,9 @@ data = add_manual_input(data)
 data = add_home_battery_costs(data)
 # %% (3) ------ add additional sources and save cost as csv ------------------
 # [RTD-target-multiindex-df]
+
+costs_all_years = []
+
 for year in years:
     costs = (data[[year, "unit", "source", "further description"]]
              .rename(columns={year: "value"}))
@@ -1356,3 +1369,7 @@ for year in years:
     costs_tot.sort_index(inplace=True)
     costs_tot = round(costs_tot, ndigits=snakemake.config.get("ndigits", 2))
     costs_tot.to_csv([v for v in snakemake.output if str(year) in v][0])
+
+    costs_all_years.append(costs_tot.assign(year=year))
+
+pd.concat(costs_all_years).set_index("year", append=True).to_csv(snakemake.output.all_years)

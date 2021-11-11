@@ -16,7 +16,8 @@ rule compile_cost_assumptions:
         dea_industrial = "inputs/technology_data_for_industrial_process_heat_0002.xlsx",
         manual_input = "inputs/manual_input.csv"
     output:
-        expand("outputs/costs_{year}.csv", year = config["years"])
+        expand("outputs/costs_{year}.csv", year = config["years"]),
+        all_years="outputs/costs.csv"
     threads: 1
     resources: mem=500
     conda: "environment.yaml"
