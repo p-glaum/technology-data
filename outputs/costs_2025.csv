@@ -291,22 +291,21 @@ decentral CHP,FOM,3.0,%/year,HP, from old pypsa cost assumptions
 decentral CHP,discount rate,0.04,per unit,Palzer thesis, from old pypsa cost assumptions
 decentral CHP,investment,1400.0,EUR/kWel,HP, from old pypsa cost assumptions
 decentral CHP,lifetime,25.0,years,HP, from old pypsa cost assumptions
-decentral air-sourced heat pump,FOM,2.98,%/year,"Danish Energy Agency, technologydatafor_heating_installations_marts_2018.xlsx",207.3 Air to water existing:  Fixed O&M
+decentral air-sourced heat pump,FOM,3.5,%/year,Palzer thesis, from old pypsa cost assumptions
 decentral air-sourced heat pump,discount rate,0.04,per unit,Palzer thesis, from old pypsa cost assumptions
 decentral air-sourced heat pump,efficiency,3.5,per unit,"Danish Energy Agency, technologydatafor_heating_installations_marts_2018.xlsx","207.3 Air to water existing:  Heat efficiency, annual average, net, radiators, existing one family house"
-decentral air-sourced heat pump,investment,895.0,EUR/kW_th,"Danish Energy Agency, technologydatafor_heating_installations_marts_2018.xlsx",207.3 Air to water existing:  Specific investment
+decentral air-sourced heat pump,investment,1050.0,EUR/kWth,HP; Palzer thesis, from old pypsa cost assumptions
 decentral air-sourced heat pump,lifetime,18.0,years,"Danish Energy Agency, technologydatafor_heating_installations_marts_2018.xlsx",207.3 Air to water existing:  Technical lifetime
-decentral gas boiler,FOM,6.62,%/year,"Danish Energy Agency, technologydatafor_heating_installations_marts_2018.xlsx",202 Natural gas boiler:  Fixed O&M
+decentral gas boiler,FOM,2.0,%/year,Palzer thesis, from old pypsa cost assumptions
 decentral gas boiler,discount rate,0.04,per unit,Palzer thesis, from old pypsa cost assumptions
 decentral gas boiler,efficiency,0.98,per unit,"Danish Energy Agency, technologydatafor_heating_installations_marts_2018.xlsx","202 Natural gas boiler:  Total efficiency, annual average, net"
-decentral gas boiler,investment,304.45,EUR/kW_th,"Danish Energy Agency, technologydatafor_heating_installations_marts_2018.xlsx",202 Natural gas boiler:  Specific investment
+decentral gas boiler,investment,175.0,EUR/kWhth,Palzer thesis, from old pypsa cost assumptions
 decentral gas boiler,lifetime,20.0,years,"Danish Energy Agency, technologydatafor_heating_installations_marts_2018.xlsx",202 Natural gas boiler:  Technical lifetime
-decentral gas boiler connection,investment,190.28,EUR/kW_th,"Danish Energy Agency, technologydatafor_heating_installations_marts_2018.xlsx",:  Possible additional specific investment
 decentral gas boiler connection,lifetime,50.0,years,"Danish Energy Agency, technologydatafor_heating_installations_marts_2018.xlsx",:  Technical lifetime
-decentral ground-sourced heat pump,FOM,1.84,%/year,"Danish Energy Agency, technologydatafor_heating_installations_marts_2018.xlsx",207.7 Ground source existing:  Fixed O&M
+decentral ground-sourced heat pump,FOM,3.5,%/year,Palzer thesis, from old pypsa cost assumptions
 decentral ground-sourced heat pump,discount rate,0.04,per unit,Palzer thesis, from old pypsa cost assumptions
 decentral ground-sourced heat pump,efficiency,3.85,per unit,"Danish Energy Agency, technologydatafor_heating_installations_marts_2018.xlsx","207.7 Ground source existing:  Heat efficiency, annual average, net, radiators, existing one family house"
-decentral ground-sourced heat pump,investment,1450.0,EUR/kW_th,"Danish Energy Agency, technologydatafor_heating_installations_marts_2018.xlsx",207.7 Ground source existing:  Specific investment
+decentral ground-sourced heat pump,investment,1400.0,EUR/kWth,Palzer thesis, from old pypsa cost assumptions
 decentral ground-sourced heat pump,lifetime,20.0,years,"Danish Energy Agency, technologydatafor_heating_installations_marts_2018.xlsx",207.7 Ground source existing:  Technical lifetime
 decentral oil boiler,FOM,2.0,%/year,Palzer thesis (https://energiesysteme-zukunft.de/fileadmin/user_upload/Publikationen/PDFs/ESYS_Materialien_Optimierungsmodell_REMod-D.pdf), from old pypsa cost assumptions
 decentral oil boiler,efficiency,0.9,per unit,Palzer thesis (https://energiesysteme-zukunft.de/fileadmin/user_upload/Publikationen/PDFs/ESYS_Materialien_Optimierungsmodell_REMod-D.pdf), from old pypsa cost assumptions
