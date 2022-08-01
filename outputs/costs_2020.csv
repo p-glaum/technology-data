@@ -416,13 +416,21 @@ nuclear,efficiency,0.33,per unit,Lazard s Levelized Cost of Energy Analysis - Ve
 nuclear,fuel,2.6,EUR/MWh_th,Lazard s Levelized Cost of Energy Analysis - Version 13.0,
 nuclear,investment,7940.45,EUR/kW_e,Lazard s Levelized Cost of Energy Analysis - Version 13.0,
 nuclear,lifetime,40.0,years,Lazard s Levelized Cost of Energy Analysis - Version 13.0,
-offwind,FOM,2.51,%/year,"Danish Energy Agency, technology_data_for_el_and_dh.xlsx","21 Offshore turbines:  Fixed O&M [EUR/MW_e/y, 2020]"
-offwind,VOM,5.0,"EUR/MWh_e, 2020","Danish Energy Agency, technology_data_for_el_and_dh.xlsx","21 Offshore turbines:  Variable O&M [EUR/MWh_e, 2020]"
-offwind,investment,1804.77,"EUR/kW_e, 2020","Danish Energy Agency, technology_data_for_el_and_dh.xlsx","21 Offshore turbines:  Nominal investment [MEUR/MW_e, 2020] grid connection costs substracted from investment costs"
-offwind,lifetime,27.0,years,"Danish Energy Agency, technology_data_for_el_and_dh.xlsx",21 Offshore turbines:  Technical lifetime [years]
+offwind,FOM,3.19,%/year,DIW DataDoc http://hdl.handle.net/10419/80348, from old pypsa cost assumptions
+offwind,VOM,0.02,EUR/MWhel,RES costs made up to fix curtailment order, from old pypsa cost assumptions
+offwind,investment,2506.0,EUR/kWel,DIW DataDoc http://hdl.handle.net/10419/80348, from old pypsa cost assumptions
+offwind,lifetime,25.0,years,IEA2010, from old pypsa cost assumptions
+offwind-ac,FOM,2.94,%/year,"Danish Energy Agency, technology_data_for_el_and_dh.xlsx","21 Near shore turbines:  Fixed O&M [EUR/MW_e/y, 2020]"
+offwind-ac,VOM,5.0,"EUR/MWh_e, 2020","Danish Energy Agency, technology_data_for_el_and_dh.xlsx","21 Near shore turbines:  Variable O&M [EUR/MWh_e, 2020]"
+offwind-ac,investment,1539.62,"EUR/kW_e, 2020","Danish Energy Agency, technology_data_for_el_and_dh.xlsx","21 Near shore turbines:  Nominal investment [MEUR/MW_e, 2020] grid connection costs substracted from investment costs"
+offwind-ac,lifetime,27.0,years,"Danish Energy Agency, technology_data_for_el_and_dh.xlsx",21 Near shore turbines:  Technical lifetime [years]
 offwind-ac-connection-submarine,investment,2685.0,EUR/MW/km,DEA https://ens.dk/en/our-services/projections-and-models/technology-data, from old pypsa cost assumptions
 offwind-ac-connection-underground,investment,1342.0,EUR/MW/km,DEA https://ens.dk/en/our-services/projections-and-models/technology-data, from old pypsa cost assumptions
 offwind-ac-station,investment,250.0,EUR/kWel,DEA https://ens.dk/en/our-services/projections-and-models/technology-data, from old pypsa cost assumptions
+offwind-dc,FOM,2.36,%/year,"Danish Energy Agency, technology_data_for_el_and_dh.xlsx","21 Offshore turbines:  Fixed O&M [EUR/MW_e/y, 2020]"
+offwind-dc,VOM,5.0,"EUR/MWh_e, 2020","Danish Energy Agency, technology_data_for_el_and_dh.xlsx","21 Offshore turbines:  Variable O&M [EUR/MWh_e, 2020]"
+offwind-dc,investment,1916.48,"EUR/kW_e, 2020","Danish Energy Agency, technology_data_for_el_and_dh.xlsx","21 Offshore turbines:  Nominal investment [MEUR/MW_e, 2020] grid connection costs substracted from investment costs"
+offwind-dc,lifetime,27.0,years,"Danish Energy Agency, technology_data_for_el_and_dh.xlsx",21 Offshore turbines:  Technical lifetime [years]
 offwind-dc-connection-submarine,investment,2000.0,EUR/MW/km,DTU report based on Fig 34 of https://ec.europa.eu/energy/sites/ener/files/documents/2014_nsog_report.pdf, from old pypsa cost assumptions
 offwind-dc-connection-underground,investment,1000.0,EUR/MW/km,Haertel 2017; average + 13% learning reduction, from old pypsa cost assumptions
 offwind-dc-station,investment,400.0,EUR/kWel,Haertel 2017; assuming one onshore and one offshore node + 13% learning reduction, from old pypsa cost assumptions

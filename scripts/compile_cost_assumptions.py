@@ -28,7 +28,7 @@ The script is structured as follows:
 import pandas as pd
 import numpy as np
 
-years = snakemake.config['years']
+
 
 # ---------- sources -------------------------------------------------------
 source_dict = {
@@ -58,7 +58,8 @@ source_dict = {
 
 # [DEA-sheet-names]
 sheet_names = {'onwind': '20 Onshore turbines',
-               'offwind': '21 Offshore turbines',
+               'offwind-dc': '21 Offshore turbines',
+               'offwind-ac': '21 Near shore turbines',
                'solar-utility': '22 Utility-scale PV',
                'solar-rooftop residential': '22 Rooftop PV residential',
                'solar-rooftop commercial': '22 Rooftop PV commercial',
@@ -109,7 +110,8 @@ sheet_names = {'onwind': '20 Onshore turbines',
 # [DEA-sheet-names]
 
 uncrtnty_lookup = {'onwind': 'J:K',
-                    'offwind': 'J:K',
+                    'offwind-dc': 'J:K',
+                    'offwind-ac': 'J:K',
                     'solar-utility': 'J:K',
                     'solar-rooftop residential':  'J:K',
                     'solar-rooftop commercial':  'J:K',
@@ -152,7 +154,7 @@ uncrtnty_lookup = {'onwind': 'J:K',
 # all excel sheets of updated technologies have a different layout and are
 # given in EUR_2020 money (instead of EUR_2015)
 new_format = ["solar-utility", 'solar-rooftop residential', 'solar-rooftop commercial',
-              "offwind"]
+              "offwind-dc", "offwind-ac"]
 # %% -------- FUNCTIONS ---------------------------------------------------
 
 def get_excel_sheets(excel_files):
@@ -1041,7 +1043,7 @@ def add_description(data):
 
     # add comment for offwind investment
     if snakemake.config['offwind_no_gridcosts']:
-        data.loc[("offwind", "investment"),
+        data.loc[[("offwind-ac", "investment"), ("offwind-dc", "investment")],
                  "further description"] += " grid connection costs substracted from investment costs"
 
     return data
@@ -1397,7 +1399,8 @@ if 'snakemake' not in globals():
                     dea_storage = "inputs/technology_data_catalogue_for_energy_storage.xlsx",
                     dea_generation = "inputs/technology_data_for_el_and_dh.xlsx",
                     dea_heating = "inputs/technologydatafor_heating_installations_marts_2018.xlsx",
-                    dea_industrial = "inputs/technology_data_for_industrial_process_heat_0002.xlsx",
+                    dea_industrial = "inputs/technology_data_for_industrial_process_heat.xlsx",
+                    dea_ccts = "inputs/technology_data_for_carbon_capture_transport_storage.xlsx",
                     manual_input = "inputs/manual_input.csv"
         ),
         output=["outputs/costs_{}.csv".format(year) for year in [2020, 2025, 2030, 2035, 2040, 2045, 2050]]
@@ -1405,7 +1408,8 @@ if 'snakemake' not in globals():
     )
     import yaml
     with open('config.yaml', encoding='utf8') as f:
-        snakemake.config = yaml.safe_load(f)
+        #snakemake.config = yaml.safe_load(f)
+years = snakemake.config['years']
 
 # (1) DEA data
 # (a)-------- get data from DEA excel sheets ----------------------------------
