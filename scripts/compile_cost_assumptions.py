@@ -28,8 +28,6 @@ The script is structured as follows:
 import pandas as pd
 import numpy as np
 
-
-
 # ---------- sources -------------------------------------------------------
 source_dict = {
                 'DEA': 'Danish Energy Agency',
@@ -72,12 +70,21 @@ sheet_names = {'onwind': '20 Onshore turbines',
                'biomass HOP': '09c Straw HOP',
                'central coal CHP': '01 Coal CHP',
                'central gas CHP': '04 Gas turb. simple cycle, L',
+               'central gas CHP CC': '04 Gas turb. simple cycle, L',
                'central solid biomass CHP': '09a Wood Chips, Large 50 degree',
+               'central solid biomass CHP CC': '09a Wood Chips, Large 50 degree',
+               'central solid biomass CHP powerboost CC': '09a Wood Chips, Large 50 degree',
+               # 'solid biomass power': '09a Wood Chips extract. plant',
+               # 'solid biomass power CC': '09a Wood Chips extract. plant',
                'central air-sourced heat pump': '40 Comp. hp, airsource 3 MW',
                'central ground-sourced heat pump': '40 Absorption heat pump, DH',
                'central resistive heater': '41 Electric Boilers',
                'central gas boiler': '44 Natural Gas DH Only',
                'decentral gas boiler': '202 Natural gas boiler',
+               'direct firing gas': '312.a Direct firing Natural Gas',
+               'direct firing gas CC': '312.a Direct firing Natural Gas',
+               'direct firing solid fuels': '312.b Direct firing Sold Fuels',
+               'direct firing solid fuels CC': '312.b Direct firing Sold Fuels',
                'decentral ground-sourced heat pump': '207.7 Ground source existing',
                'decentral air-sourced heat pump': '207.3 Air to water existing',
                # 'decentral resistive heater': '216 Electric heating',
@@ -85,9 +92,10 @@ sheet_names = {'onwind': '20 Onshore turbines',
                # 'decentral water tank storage': '142 Small scale hot water tank',
                'fuel cell': '12 LT-PEMFC CHP',
                'hydrogen storage underground': '151c Hydrogen Storage - Caverns',
-               'hydrogen storage tank incl. compressor': '151a Hydrogen Storage - Tanks',
+               'hydrogen storage tank type 1 including compressor': '151a Hydrogen Storage - Tanks',
                'micro CHP': '219 LT-PEMFC mCHP - natural gas',
                'biogas' : '81 Biogas Plant, Basic conf.',
+               'biogas CC' : '81 Biogas Plant, Basic conf.',
                'biogas upgrading': '82 Biogas, upgrading',
                'battery': '180 Lithium Ion Battery',
                'industrial heat pump medium temperature': '302.a High temp. hp Up to 125 C',
@@ -95,18 +103,22 @@ sheet_names = {'onwind': '20 Onshore turbines',
                'electric boiler steam': '310.1 Electric boiler steam  ',
                'gas boiler steam': '311.1c Steam boiler Gas',
                'solid biomass boiler steam': '311.1e Steam boiler Wood',
+               'solid biomass boiler steam CC': '311.1e Steam boiler Wood',
                'biomass boiler': '204 Biomass boiler, automatic',
                'electrolysis': '86 AEC 100MW', #'88 Alkaline Electrolyser',
-               'direct air capture' : '403.a Direct air capture',
-               'biomass CHP capture' : '401.a Post comb - small CHP',
-               'cement capture' : '401.c Post comb - Cement kiln',
-               'BioSNG' : '84 Gasif. CFB, Bio-SNG',
-               'BtL' : '85 Gasif. Ent. Flow FT, liq fu ',
+               'direct air capture': '403.a Direct air capture',
+               'biomass CHP capture': '401.a Post comb - small CHP',
+               'cement capture': '401.c Post comb - Cement kiln',
+               'BioSNG': '84 Gasif. CFB, Bio-SNG',
+               'BtL': '85 Gasif. Ent. Flow FT, liq fu ',
                'biogas plus hydrogen': '99 SNG from methan. of biogas',
-               #'methanolisation': '98 Methanol from power',
-               #'Fischer-Tropsch': '102 Hydrogen to Jet',
+               'methanolisation': '98 Methanol from power',
+               'Fischer-Tropsch': '102 Hydrogen to Jet',
+               'central hydrogen CHP': '12 LT-PEMFC CHP',
                'Haber-Bosch': '103 Hydrogen to Ammonia',
                'air separation unit': '103 Hydrogen to Ammonia',
+               'waste CHP': '08 WtE CHP, Large, 50 degree',
+               'waste CHP CC': '08 WtE CHP, Large, 50 degree',
                # 'electricity distribution rural': '101 2 el distri Rural',
                # 'electricity distribution urban': '101 4 el distri  city',
                # 'gas distribution rural': '102 7 gas  Rural',
@@ -133,22 +145,32 @@ uncrtnty_lookup = {'onwind': 'J:K',
                     'biomass HOP': 'I:J',
                     'central coal CHP': '',
                     'central gas CHP': 'I:J',
+                    'central gas CHP CC': 'I:J',
+                    'central hydrogen CHP': 'I:J',
                     'central solid biomass CHP': 'I:J',
-                    # 'central solid biomass CHP CCS': 'I:J',
+                    'central solid biomass CHP CC': 'I:J',
+                    'central solid biomass CHP powerboost CC': 'I:J',
+                    # 'solid biomass power': 'J:K',
+                    # 'solid biomass power CC': 'J:K',
                     'solar': '',
                     'central air-sourced heat pump': 'J:K',
                     'central ground-sourced heat pump': 'I:J',
                     'central resistive heater': 'I:J',
                     'central gas boiler': 'I:J',
                     'decentral gas boiler': 'I:J',
+                    'direct firing gas': 'H:I',
+                    'direct firing gas CC': 'H:I',
+                    'direct firing solid fuels': 'H:I',
+                    'direct firing solid fuels CC': 'H:I',
                     'decentral ground-sourced heat pump': 'I:J',
                     'decentral air-sourced heat pump': 'I:J',
                     'central water tank storage': 'J:K',
                     'fuel cell': 'I:J',
                     'hydrogen storage underground': 'J:K',
-                    'hydrogen storage tank incl. compressor': 'J:K',
+                    'hydrogen storage tank type 1 including compressor': 'J:K',
                     'micro CHP': 'I:J',
                     'biogas': 'I:J',
+                    'biogas CC': 'I:J',
                     'biogas upgrading': 'I:J',
                     'electrolysis': 'I:J',
                     'battery': 'L,N',
@@ -163,11 +185,14 @@ uncrtnty_lookup = {'onwind': 'J:K',
                     'electric boiler steam':'H:I',
                     'gas boiler steam':'H:I',
                     'solid biomass boiler steam':'H:I',
+                    'solid biomass boiler steam CC':'H:I',
                     'biomass boiler': 'I:J',
                     'Fischer-Tropsch': 'I:J',
                     'Haber-Bosch': 'I:J',
                     'air separation unit': 'I:J',
                     'methanolisation': 'J:K',
+                    'waste CHP': 'I:J',
+                    'waste CHP CC': 'I:J',
 }
 
 # since February 2022 DEA uses a new format for the technology data
@@ -222,7 +247,7 @@ def get_data_DEA(tech, data_in, expectation=None):
     elif tech in ['direct air capture', 'cement capture', 'biomass CHP capture']:
         usecols = "A:F"
     elif tech in ['industrial heat pump medium temperature', 'industrial heat pump high temperature',
-                  'electric boiler steam', "gas boiler steam", "solid biomass boiler steam"]:
+                  'electric boiler steam', "gas boiler steam", "solid biomass boiler steam", "solid biomass boiler steam CC", "direct firing gas", "direct firing gas CC", "direct firing solid fuels", "direct firing solid fuels CC"]:
         usecols = "A:E"
     elif tech in ['Fischer-Tropsch', 'Haber-Bosch', 'air separation unit']:
         usecols = "B:F"
@@ -243,6 +268,7 @@ def get_data_DEA(tech, data_in, expectation=None):
                           usecols=usecols,
                           skiprows=skiprows,
                           na_values="N.A")
+    # print(excel)
 
     excel.dropna(axis=1, how="all", inplace=True)
 
@@ -250,6 +276,7 @@ def get_data_DEA(tech, data_in, expectation=None):
     excel.index = excel.index.fillna(" ")
     excel.index = excel.index.astype(str)
     excel.dropna(axis=0, how="all", inplace=True)
+    # print(excel)
 
     if 2020 not in excel.columns:
         selection = excel[excel.isin([2020])].dropna(how="all").index
@@ -259,7 +286,7 @@ def get_data_DEA(tech, data_in, expectation=None):
     uncertainty_columns = ["2050-optimist", "2050-pessimist"]
     if uncrtnty_lookup[tech]:
         # hydrogen storage sheets have reverse order of lower/upper estimates
-        if tech in ["hydrogen storage tank incl. compressor", "hydrogen storage cavern"]:
+        if tech in ["hydrogen storage tank type 1 including compressor", "hydrogen storage cavern"]:
             uncertainty_columns.reverse()
         excel.rename(columns={excel.columns[-2]: uncertainty_columns[0],
                                 excel.columns[-1]: uncertainty_columns[1]
@@ -290,6 +317,7 @@ def get_data_DEA(tech, data_in, expectation=None):
                   "Output capacity expansion cost",
                   "Hydrogen output",
                   "Hydrogen (% total input_e (MWh / MWh))",
+                  " - hereof recoverable for district heating (%-points of heat loss)",
                   "Cb coefficient",
                   "Cv coefficient",
                   "Distribution network costs", "Technical life",
@@ -298,6 +326,7 @@ def get_data_DEA(tech, data_in, expectation=None):
                   'Heat input', 'Heat  input', 'Electricity input', 'Eletricity input', 'Heat out',
                   'capture rate',
                   "FT Liquids Output, MWh/MWh Total Input",
+                  " - hereof recoverable for district heating (%-points of heat loss)",
                   "Bio SNG (% of fuel input)",
                   "Total O&M"]
 
@@ -318,11 +347,13 @@ def get_data_DEA(tech, data_in, expectation=None):
     # average data  in format "lower_value-upper_value"
     df = df.applymap(lambda x: (float((x).split("-")[0])
                                 + float((x).split("-")[1]))/2 if (type(x)==str and "-" in x) else x)
-    # remove symbols "~", ">", "<"
-    for sym in ["~", ">", "<"]:
+    # remove symbols "~", ">", "<" and " "
+    for sym in ["~", ">", "<", " "]:
         df = df.applymap(lambda x: x.replace(sym,"") if type(x)==str else x)
 
     df = df.astype(float)
+    df = df.mask(df.apply(pd.to_numeric, errors='coerce').isnull(), df.astype(str).apply(lambda x: x.str.strip()))
+    # print(df)
 
     ## Modify data loaded from DEA on a per-technology case
     if (tech == "offwind") and snakemake.config['offwind_no_gridcosts']:
@@ -347,7 +378,7 @@ def get_data_DEA(tech, data_in, expectation=None):
     if tech == 'biomass boiler':
         df.drop(df.loc[df.index.str.contains("Possible additional")].index, inplace=True)
         df.drop(df.loc[df.index.str.contains("Total efficiency")].index, inplace=True)
-	
+
     if tech == "Haber-Bosch":
         df.drop(df.loc[df.index.str.contains("Specific investment mark-up factor optional ASU")].index, inplace=True)
         df.drop(df.loc[df.index.str.contains("Specific investment (MEUR /TPD Ammonia output", regex=False)].index, inplace=True)
@@ -380,6 +411,9 @@ def get_data_DEA(tech, data_in, expectation=None):
         df.drop(df.loc[df.index.str.contains("Fixed O&M (kEUR/MW Ammonia/year)", regex=False)].index, inplace=True)
         df.drop(df.loc[df.index.str.contains("Variable O&M (EUR/MWh Ammonia)", regex=False)].index, inplace=True)
 
+    if "solid biomass power" in tech:
+        df.index = df.index.str.replace("EUR/MWeh", "EUR/MWh")
+
     df_final = pd.DataFrame(index=df.index, columns=years)
 
     # [RTD-interpolation-example]
@@ -403,6 +437,7 @@ def get_data_DEA(tech, data_in, expectation=None):
         df_final["unit"] = (df_final.rename(index=lambda x:
                                             x[x.rfind("(")+1: x.rfind(")")]).index.values)
     df_final.index = df_final.index.str.replace(r" \(.*\)","", regex=True)
+
 
     return df_final
 
@@ -554,7 +589,7 @@ def add_co2_intensity(costs):
     costs.loc[('coal', 'CO2 intensity'), 'value'] = 93369 / 1e3 / TJ_to_MWh  # Steinkohle
     costs.loc[('lignite', 'CO2 intensity'), 'value'] = 113031 / 1e3 / TJ_to_MWh  # Rohbraunkohle Rheinland
     costs.loc[('oil', 'CO2 intensity'), 'value'] = 74020 / 1e3 / TJ_to_MWh  # Heizöl, leicht
-    costs.at[('solid biomass', 'CO2 intensity'), 'value'] = 0.3
+    costs.loc[('solid biomass', 'CO2 intensity'), 'value'] = 0.3
 
     oil_specific_energy = 44 #GJ/t
     CO2_CH2_mass_ratio = 44/14 #kg/kg (1 mol per mol)
@@ -746,6 +781,8 @@ def clean_up_units(tech_data):
     tech_data.unit = tech_data.unit.str.replace("MWh SNG", "MWh_CH4")
     tech_data.unit = tech_data.unit.str.replace("MW SNG", "MW_CH4")
     tech_data.unit = tech_data.unit.str.replace("EUR/MWh of total input", "EUR/MWh_e")
+    tech_data.unit = tech_data.unit.str.replace("EUR/MWeh", "EUR/MWh_e")
+    tech_data.unit = tech_data.unit.str.replace("% -points of heat loss", "MWh_th/MWh_el")
 
 
     tech_data.unit = tech_data.unit.str.replace("FT Liquids Output, MWh/MWh Total Inpu", "MWh_FT/MWh_H2")
@@ -875,12 +912,12 @@ def set_round_trip_efficiency(tech_data):
     """
 
     # hydrogen storage
-    to_drop = [("hydrogen storage tank incl. compressor", ' - Charge efficiency')]
-    to_drop.append(("hydrogen storage tank incl. compressor", ' - Discharge efficiency'))
+    to_drop = [("hydrogen storage tank type 1 including compressor", ' - Charge efficiency')]
+    to_drop.append(("hydrogen storage tank type 1 including compressor", ' - Discharge efficiency'))
     to_drop.append(("hydrogen storage underground", ' - Charge efficiency'))
     to_drop.append(("hydrogen storage underground", ' - Discharge efficiency'))
     tech_data.loc[("hydrogen storage underground", "Round trip efficiency"), years] *= 100
-    tech_data.loc[("hydrogen storage tank incl. compressor", "Round trip efficiency"), years] *= 100
+    tech_data.loc[("hydrogen storage tank type 1 including compressor", "Round trip efficiency"), years] *= 100
 
 
 
@@ -1020,20 +1057,34 @@ def order_data(tech_data):
         efficiency = df[(df.index.str.contains("efficiency") |
                          (df.index.str.contains("Hydrogen output, at LHV"))|
                          (df.index.str.contains("FT Liquids Output, MWh/MWh Total Input"))|
+                         (df.index.str.contains("hereof recoverable for district heating"))|
                          (df.index.str.contains("Bio SNG"))|
                          (df.index == ("Hydrogen")))
                          & ((df.unit=="%") |  (df.unit =="% total size") |
                            (df.unit =="% of fuel input") |
                            (df.unit =="MWh_H2/MWh_e") |
+                           (df.unit =="%-points of heat loss") |
                            df.unit.str.contains("MWh_FT/MWh_H2"))
                          & (~df.index.str.contains("name plate"))].copy()
 
         if tech == 'Fischer-Tropsch':
             efficiency[years] *= 100
 
+
         # take annual average instead of name plate efficiency
         if any(efficiency.index.str.contains("annual average")):
             efficiency = efficiency[efficiency.index.str.contains("annual average")]
+
+        # hydrogen electrolysiswith recoverable heat
+        heat_recovery_label = "hereof recoverable for district heating"
+        with_heat_recovery = efficiency.index.str.contains(heat_recovery_label)
+        if with_heat_recovery.any():
+            efficiency_heat = efficiency[with_heat_recovery].copy()
+            efficiency_heat["parameter"] = "efficiency-heat"
+            clean_df[tech] = pd.concat([clean_df[tech], efficiency_heat])
+            efficiency_h2 = efficiency[efficiency.index.str.contains("Hydrogen")].copy()
+            efficiency_h2["parameter"] = "efficiency"
+            clean_df[tech] = pd.concat([clean_df[tech], efficiency_h2])
 
         # check if electric and heat efficiencies are given
         if (any(["Electric" in ind for ind in efficiency.index]) and
@@ -1218,7 +1269,6 @@ def rename_pypsa_old(costs_pypsa):
 
     # rename to new names
     costs_pypsa.rename({'central CHP': 'central gas CHP'}, inplace=True)
-    costs_pypsa.rename({'hydrogen storage': 'hydrogen storage tank'}, inplace=True)
     costs_pypsa.rename({'hydrogen underground storage': 'hydrogen storage underground'},
                        inplace=True)
 
@@ -1235,7 +1285,7 @@ def add_manual_input(data):
 
     # Inflation adjustment for investment and VOM
     mask = df[df['parameter'].isin(['investment','VOM'])].index
-    df.loc[mask, 'value'] /= (1+snakemake.config['rate_inflation'])**(df.loc[mask, 'currency_year']-snakemake.config['eur_year'])
+    df.loc[mask, 'value'] /= (1+snakemake.config['rate_inflation'])**(df.loc[mask, 'currency_year'].astype(int)-snakemake.config['eur_year'])
 
     l = []
     for tech in df['technology'].unique():
@@ -1255,7 +1305,8 @@ def add_manual_input(data):
             l.append(s)
 
     new_df = pd.DataFrame(l).set_index(['technology','parameter'])
-    data = data.combine_first(new_df)
+    # overwrite DEA data with manual input
+    data = new_df.combine_first(data)
 
     return data
 
@@ -1291,18 +1342,34 @@ def carbon_flow(costs,year):
     btlcost_data = np.interp(x=years, xp=[2020, 2050], fp=[3500, 2000])
     btl_cost = pd.Series(data=btlcost_data, index=years)
 
+    bmH2cost_data = np.interp(x=years, xp=[2020, 2050], fp=[4000, 2500])
+    bmH2_cost = pd.Series(data=bmH2cost_data, index=years)
+
     btleta_data = np.interp(x=years, xp=[2020, 2050], fp=[0.35, 0.45])
     btl_eta = pd.Series(data=btleta_data, index=years)
 
+    #Adding pelletizing cost to biomass boiler
+    costs.loc[('biomass boiler', 'pelletizing cost'), 'value'] = 9
+    costs.loc[('biomass boiler', 'pelletizing cost'), 'unit'] = "EUR/MWh_pellets"
+    costs.loc[('biomass boiler', 'pelletizing cost'), 'source'] = "Assumption based on doi:10.1016/j.rser.2019.109506"
 
-    for tech in ['BtL', 'BioSNG', 'methanation', 'Fischer-Tropsch', 'biogas', 'digestible biomass to hydrogen', 'solid biomass to hydrogen']:
+
+    for tech in ['Fischer-Tropsch', 'methanolisation', 'BtL', 'BioSNG', 'biogas',
+                 'biogas CC', 'digestible biomass to hydrogen',
+                 'solid biomass to hydrogen', 'electrobiofuels']:
         inv_cost = 0
         eta = 0
         lifetime = 0
         FOM = 0
         VOM = 0
         source = 'TODO'
-        co2_capture_rate = 0.98
+        co2_capture_rate = 0.90
+
+        if not (tech, "capture rate") in costs.index:
+            costs.loc[(tech, 'capture rate'), 'value'] = co2_capture_rate
+            costs.loc[(tech, 'capture rate'), 'unit'] = "per unit"
+            costs.loc[(tech, 'capture rate'), 'source'] = "Assumption based on doi:10.1016/j.biombioe.2015.01.006"
+
 
         if tech == 'BtL':
             inv_cost = btl_cost[year]
@@ -1310,11 +1377,12 @@ def carbon_flow(costs,year):
             eta = btl_eta[year]
             source = "doi:10.1016/j.enpol.2017.05.013"
 
+
         elif tech == 'BioSNG':
             medium_out = 'gas'
             lifetime = 25
 
-        elif tech == 'biogas':
+        elif tech in ['biogas', 'biogas CC']:
             eta = 1
             source = "Assuming input biomass is already given in biogas output"
             AD_CO2_share = 0.4 #volumetric share in biogas (rest is CH4)
@@ -1340,13 +1408,13 @@ def carbon_flow(costs,year):
             AD_CO2_share = 0.1 #volumetric share in biogas (rest is CH4).
 
         elif tech == 'digestible biomass to hydrogen':
-            inv_cost = 2500
+            inv_cost = bmH2_cost[year]
             eta = 0.39
             FOM = 4.25
             source = 'Zech et.al. DBFZ Report Nr. 19. Hy-NOW - Evaluierung der Verfahren und Technologien für die Bereitstellung von Wasserstoff auf Basis von Biomasse, DBFZ, 2014' #source_dict('HyNOW')
 
         elif tech == 'solid biomass to hydrogen':
-            inv_cost = 2500
+            inv_cost = bmH2_cost[year]
             eta = 0.56
             FOM = 4.25
             source = 'Zech et.al. DBFZ Report Nr. 19. Hy-NOW - Evaluierung der Verfahren und Technologien für die Bereitstellung von Wasserstoff auf Basis von Biomasse, DBFZ, 2014' #source_dict('HyNOW')
@@ -1356,9 +1424,68 @@ def carbon_flow(costs,year):
             costs.loc[(tech, 'efficiency'), 'unit'] = "per unit"
             costs.loc[(tech, 'efficiency'), 'source'] = source
 
-        costs.loc[(tech, 'capture rate'), 'value'] = co2_capture_rate
-        costs.loc[(tech, 'capture rate'), 'unit'] = "per unit"
-        costs.loc[(tech, 'capture rate'), 'source'] = "Assumption based on doi:10.1016/j.biombioe.2015.01.006"
+        if tech in ['BioSNG', 'BtL']:
+            input_CO2_intensity = costs.loc[('solid biomass', 'CO2 intensity'), 'value']
+
+            costs.loc[(tech, 'C in fuel'), 'value'] = costs.loc[(tech, 'efficiency'), 'value'] \
+                                                  * costs.loc[(medium_out, 'CO2 intensity'), 'value'] \
+                                                  / input_CO2_intensity
+            costs.loc[(tech, 'C stored'), 'value'] = 1 - costs.loc[(tech, 'C in fuel'), 'value'] - c_in_char
+            costs.loc[(tech, 'CO2 stored'), 'value'] = input_CO2_intensity * costs.loc[(tech, 'C stored'), 'value']
+
+            costs.loc[(tech, 'C in fuel'), 'unit'] = "per unit"
+            costs.loc[(tech, 'C stored'), 'unit'] = "per unit"
+            costs.loc[(tech, 'CO2 stored'), 'unit'] = "tCO2/MWh_th"
+
+            costs.loc[(tech, 'C in fuel'), 'source'] = "Stoichiometric calculation, doi:10.1016/j.apenergy.2022.120016"
+            costs.loc[(tech, 'C stored'), 'source'] = "Stoichiometric calculation, doi:10.1016/j.apenergy.2022.120016"
+            costs.loc[(tech, 'CO2 stored'), 'source'] = "Stoichiometric calculation, doi:10.1016/j.apenergy.2022.120016"
+
+        elif tech in ['electrobiofuels']:
+
+            input_CO2_intensity = costs.loc[('solid biomass', 'CO2 intensity'), 'value']
+            oil_CO2_intensity = costs.loc[('oil', 'CO2 intensity'), 'value']
+
+            costs.loc[('electrobiofuels', 'C in fuel'), 'value'] = (costs.loc[('BtL', 'C in fuel'), 'value']
+                                                                    + costs.loc[('BtL', 'C stored'), 'value']
+                                                                    * costs.loc[('Fischer-Tropsch', 'capture rate'), 'value'])
+            costs.loc[('electrobiofuels', 'C in fuel'), 'unit'] = 'per unit'
+            costs.loc[('electrobiofuels', 'C in fuel'), 'source'] = 'Stoichiometric calculation'
+
+            costs.loc[('electrobiofuels', 'efficiency-biomass'), 'value'] = costs.loc[('electrobiofuels', 'C in fuel'), 'value'] \
+                                                                            * input_CO2_intensity / oil_CO2_intensity
+            costs.loc[('electrobiofuels', 'efficiency-biomass'), 'unit'] = 'per unit'
+            costs.loc[('electrobiofuels', 'efficiency-biomass'), 'source'] = 'Stoichiometric calculation'
+
+
+            efuel_scale_factor = costs.loc[('BtL', 'C stored'), 'value'] * costs.loc[('Fischer-Tropsch', 'capture rate'), 'value']
+
+            costs.loc[('electrobiofuels', 'efficiency-hydrogen'), 'value'] = costs.loc[('Fischer-Tropsch', 'efficiency'), 'value']\
+                                                                             / efuel_scale_factor
+            costs.loc[('electrobiofuels', 'efficiency-hydrogen'), 'unit'] = 'per unit'
+            costs.loc[('electrobiofuels', 'efficiency-hydrogen'), 'source'] = 'Stoichiometric calculation'
+
+            costs.loc[('electrobiofuels', 'efficiency-tot'), 'value'] = (1 /
+                                                                         (1 / costs.loc[('electrobiofuels', 'efficiency-hydrogen'), 'value'] +
+                                                                          1 / costs.loc[('electrobiofuels', 'efficiency-biomass'), 'value']))
+            costs.loc[('electrobiofuels', 'efficiency-tot'), 'unit'] = 'per unit'
+            costs.loc[('electrobiofuels', 'efficiency-tot'), 'source'] = 'Stoichiometric calculation'
+
+            inv_cost = btl_cost[year] + costs.loc[('Fischer-Tropsch', 'investment'), 'value'] * efuel_scale_factor
+            VOM = costs.loc[('BtL', 'VOM'), 'value'] + costs.loc[('Fischer-Tropsch', 'VOM'), 'value'] * efuel_scale_factor
+            FOM = costs.loc[('BtL', 'FOM'), 'value']
+            medium_out = 'oil'
+            source = "combination of BtL and electrofuels"
+
+        elif tech in ['biogas', 'biogas CC', 'biogas plus hydrogen']:
+            CH4_density = 0.657 #kg/Nm3
+            CO2_density = 1.98 #kg/Nm3
+            CH4_vol_energy_density = CH4_specific_energy * CH4_density / (1000 * 3.6) #MJ/Nm3 -> MWh/Nm3
+            CO2_weight_share = AD_CO2_share * CO2_density
+
+            costs.loc[(tech, 'CO2 stored'), 'value'] = CO2_weight_share / CH4_vol_energy_density / 1000 #tCO2/MWh,in (NB: assuming the input is already given in the biogas potential and cost
+            costs.loc[(tech, 'CO2 stored'), 'unit'] = "tCO2/MWh_th"
+            costs.loc[(tech, 'CO2 stored'), 'source'] = "Stoichiometric calculation, doi:10.1016/j.apenergy.2022.120016"
 
         if inv_cost > 0:
             costs.loc[(tech, 'investment'), 'value'] = inv_cost
@@ -1380,32 +1507,80 @@ def carbon_flow(costs,year):
             costs.loc[(tech, 'VOM'), 'unit'] = "EUR/MWh_th"
             costs.loc[(tech, 'VOM'), 'source'] = source
 
-        if tech in ['BioSNG', 'BtL']:
-            input_CO2_intensity = costs.loc[('solid biomass', 'CO2 intensity'), 'value']
+    return costs
 
-            costs.loc[(tech, 'C in fuel'), 'value'] = costs.loc[(tech, 'efficiency'), 'value'] \
-                                                  * costs.loc[(medium_out, 'CO2 intensity'), 'value'] \
-                                                  / input_CO2_intensity
-            costs.loc[(tech, 'C stored'), 'value'] = 1 - costs.loc[(tech, 'C in fuel'), 'value'] - c_in_char
-            costs.loc[(tech, 'CO2 stored'), 'value'] = input_CO2_intensity * costs.loc[(tech, 'C stored'), 'value']
+def energy_penalty(costs):
 
-            costs.loc[(tech, 'C in fuel'), 'unit'] = "per unit"
-            costs.loc[(tech, 'C stored'), 'unit'] = "per unit"
-            costs.loc[(tech, 'CO2 stored'), 'unit'] = "tCO2/MWh_th"
+    # Energy penalty for biomass carbon capture
+    # Need to take steam production for CC into account, assumed with the main feedstock,
+    # e.g. the input biomass is used also for steam, and the efficiency for el and heat is scaled down accordingly
 
-            costs.loc[(tech, 'C in fuel'), 'source'] = "Stoichiometric calculation"
-            costs.loc[(tech, 'C stored'), 'source'] = "Stoichiometric calculation"
-            costs.loc[(tech, 'CO2 stored'), 'source'] = "Stoichiometric calculation"
+    for tech in ['central solid biomass CHP CC', 'waste CHP CC', 'solid biomass boiler steam CC', 'direct firing solid fuels CC', 'direct firing gas CC', 'biogas CC']:
 
-        elif tech in ['biogas','biogas plus hydrogen']:
-            CH4_density = 0.657 #kg/Nm3
-            CO2_density = 1.98 #kg/Nm3
-            CH4_vol_energy_density = CH4_specific_energy * CH4_density / (1000 * 3.6) #MJ/Nm3 -> MWh/Nm3
-            CO2_weight_share = AD_CO2_share * CO2_density
+        if 'powerboost' in tech:
+            boiler = 'electric boiler steam'
+            feedstock = 'solid biomass'
+            co2_capture = costs.loc[(feedstock, 'CO2 intensity'), 'value']
+        elif 'gas' in tech:
+            boiler = 'gas boiler steam'
+            feedstock = 'gas'
+            co2_capture = costs.loc[(feedstock, 'CO2 intensity'), 'value']
+        elif 'biogas' in tech:
+            boiler = 'gas boiler steam'
+            co2_capture = costs.loc[(tech, 'CO2 stored'), 'value']
+        else:
+            boiler = 'solid biomass boiler steam'
+            feedstock = 'solid biomass'
+            co2_capture = costs.loc[(feedstock, 'CO2 intensity'), 'value']
 
-            costs.loc[(tech, 'CO2 stored'), 'value'] = CO2_weight_share / CH4_vol_energy_density / 1000 #tCO2/MWh,in (NB: assuming the input is already given in the biogas potential and cost
-            costs.loc[(tech, 'CO2 stored'), 'unit'] = "tCO2/MWh_th"
-            costs.loc[(tech, 'CO2 stored'), 'source'] = "Stoichiometric calculation"
+        #Scaling biomass input to account for heat demand of carbon capture
+        scalingFactor = 1 / (1 + co2_capture * costs.loc[
+            ('biomass CHP capture', 'heat-input'), 'value']
+                             / costs.loc[(boiler, 'efficiency'), 'value'])
+
+        eta_steam = (1 - scalingFactor) * costs.loc[(boiler, 'efficiency'), 'value']
+        eta_old = costs.loc[(tech, 'efficiency'), 'value']
+
+        temp = costs.loc[(tech, 'efficiency'), 'value']
+        eta_main = costs.loc[(tech, 'efficiency'), 'value'] * scalingFactor
+
+        # Adapting investment share of tech due to steam boiler addition. Investment per MW_el.
+        costs.loc[(tech, 'investment'), 'value'] = costs.loc[(tech, 'investment'), 'value'] * eta_old / eta_main \
+            + costs.loc[(boiler, 'investment'), 'value'] * eta_steam / eta_main
+        costs.loc[(tech, 'investment'), 'source'] = 'Combination of ' + tech + ' and ' + boiler
+        costs.loc[(tech, 'investment'), 'further description'] = ''
+
+        if costs.loc[(tech, 'VOM'), 'value']:
+            break
+        else:
+            costs.loc[(tech, 'VOM'), 'value'] = 0.
+
+        costs.loc[(tech, 'VOM'), 'value'] = costs.loc[(tech, 'VOM'), 'value'] * eta_old / eta_main \
+            + costs.loc[(boiler, 'VOM'), 'value'] * eta_steam / eta_main
+        costs.loc[(tech, 'VOM'), 'source'] = 'Combination of ' + tech + ' and ' + boiler
+        costs.loc[(tech, 'VOM'), 'further description'] = ''
+
+        costs.loc[(tech, 'efficiency'), 'value'] = eta_main
+        costs.loc[(tech, 'efficiency'), 'source'] = 'Combination of ' + tech + ' and ' + boiler
+        costs.loc[(tech, 'efficiency'), 'further description'] = ''
+
+        if 'CHP' in tech:
+            costs.loc[(tech, 'efficiency-heat'), 'value'] = \
+                costs.loc[(tech, 'efficiency-heat'), 'value'] * scalingFactor \
+                    + costs.loc[('solid biomass', 'CO2 intensity'), 'value'] * \
+                (costs.loc[('biomass CHP capture', 'heat-output'), 'value'] +
+                 costs.loc[('biomass CHP capture', 'compression-heat-output'), 'value'])
+            costs.loc[(tech, 'efficiency-heat'), 'source'] = 'Combination of ' + tech + ' and ' + boiler
+            costs.loc[(tech, 'efficiency-heat'), 'further description'] = ''
+
+        if 'biogas CC' in tech:
+            costs.loc[(tech, 'VOM'), 'value'] = 0
+            costs.loc[(tech, 'VOM'), 'unit'] = 'EUR/MWh'
+
+        costs.loc[(tech, 'VOM'), 'value'] = costs.loc[(tech, 'VOM'), 'value'] * eta_old / eta_main \
+            + costs.loc[(boiler, 'VOM'), 'value'] * eta_steam / eta_main
+        costs.loc[(tech, 'VOM'), 'source'] = 'Combination of ' + tech + ' and ' + boiler
+        costs.loc[(tech, 'VOM'), 'further description'] = ''
 
     return costs
 
@@ -1581,166 +1756,151 @@ def add_mean_solar_rooftop(data):
 
 # %% *************************************************************************
 #  ---------- MAIN ------------------------------------------------------------
-# for testing
-if 'snakemake' not in globals():
-    from vresutils.snakemake import MockSnakemake
-    snakemake = MockSnakemake(
-        input=dict(
-                    pypsa_costs = "inputs/costs_PyPSA.csv",
-                    fraunhofer_costs = "inputs/Fraunhofer_ISE_costs.csv",
-                    fraunhofer_energy_prices = "inputs/Fraunhofer_ISE_energy_prices.csv",
-                    EWG_costs = "inputs/EWG_costs.csv",
-                    dea_transport = "inputs/energy_transport_data_sheet_dec_2017.xlsx",
-                    dea_renewable_fuels = "inputs/data_sheets_for_renewable_fuels.xlsx",
-                    dea_storage = "inputs/technology_data_catalogue_for_energy_storage.xlsx",
-                    dea_generation = "inputs/technology_data_for_el_and_dh.xlsx",
-                    dea_heating = "inputs/technologydatafor_heating_installations_marts_2018.xlsx",
-                    dea_industrial = "inputs/technology_data_for_industrial_process_heat.xlsx",
-                    dea_ccts = "inputs/technology_data_for_carbon_capture_transport_storage.xlsx",
-                    manual_input = "inputs/manual_input.csv"
-        ),
-        output=["outputs/costs_{}.csv".format(year) for year in [2020, 2025, 2030, 2035, 2040, 2045, 2050]]
+if __name__ == "__main__":
+    if 'snakemake' not in globals():
+        import os
+        from _helpers import mock_snakemake
+        os.chdir(os.path.join(os.getcwd(), "scripts"))
+        snakemake = mock_snakemake("compile_cost_assumptions")
 
-    )
-    import yaml
-    with open('config.yaml', encoding='utf8') as f:
-        snakemake.config = yaml.safe_load(f)
+    years = snakemake.config['years']
 
-years = snakemake.config['years']
+    # (1) DEA data
+    # (a)-------- get data from DEA excel sheets ----------------------------------
+    # read excel sheet names of all excel files
+    excel_files = [v for k,v in snakemake.input.items() if "dea" in k]
+    data_in = get_excel_sheets(excel_files)
+    # create dictionary with raw data from DEA sheets
+    d_by_tech = get_data_from_DEA(data_in, expectation=snakemake.config["expectation"])
+    # concat into pd.Dataframe
+    tech_data = pd.concat(d_by_tech).sort_index()
+    # clean up units
+    tech_data = clean_up_units(tech_data)
 
-# (1) DEA data
-# (a)-------- get data from DEA excel sheets ----------------------------------
-# read excel sheet names of all excel files
-excel_files = [v for k,v in snakemake.input.items() if "dea" in k]
-data_in = get_excel_sheets(excel_files)
-# create dictionary with raw data from DEA sheets
-d_by_tech = get_data_from_DEA(data_in, expectation=snakemake.config["expectation"])
-# concat into pd.Dataframe
-tech_data = pd.concat(d_by_tech).sort_index()
-# clean up units
-tech_data = clean_up_units(tech_data)
+    # (b) ------ specific assumptions for some technologies -----------------------
 
-# (b) ------ specific assumptions for some technologies -----------------------
+    # specify investment and efficiency assumptions for:
+    # resistive heater, decentral gas boiler, biogas upgrading and heat pumps
+    tech_data = set_specify_assumptions(tech_data)
 
-# specify investment and efficiency assumptions for:
-# resistive heater, decentral gas boiler, biogas upgrading and heat pumps
-tech_data = set_specify_assumptions(tech_data)
+    # round trip efficiency for hydrogen + battery storage
+    tech_data = set_round_trip_efficiency(tech_data)
 
-# round trip efficiency for hydrogen + battery storage
-tech_data = set_round_trip_efficiency(tech_data)
+    # drop all rows which only contains zeros
+    tech_data = tech_data.loc[(tech_data[years]!=0).sum(axis=1)!=0]
 
-# drop all rows which only contains zeros
-tech_data = tech_data.loc[(tech_data[years]!=0).sum(axis=1)!=0]
-
-# (c) -----  get tech data in pypsa syntax -----------------------------------
-# make categories: investment, FOM, VOM, efficiency, c_b, c_v
-data = order_data(tech_data)
-# add excel sheet names and further description
-data = add_description(data)
-# convert efficiency from %-> per unit and investment from MW->kW to compare
-data = convert_units(data)
-# add gas storage (different methodology than other sheets)
-data = add_gas_storage(data)
-# add carbon capture
-data = add_carbon_capture(data, tech_data)
+    # (c) -----  get tech data in pypsa syntax -----------------------------------
+    # make categories: investment, FOM, VOM, efficiency, c_b, c_v
+    data = order_data(tech_data)
+    # add excel sheet names and further description
+    data = add_description(data)
+    # convert efficiency from %-> per unit and investment from MW->kW to compare
+    data = convert_units(data)
+    # add gas storage (different methodology than other sheets)
+    data = add_gas_storage(data)
+    # add carbon capture
+    data = add_carbon_capture(data, tech_data)
 
 
-# %% (2) -- get data from other sources which need formatting -----------------
-# (a)  ---------- get old pypsa costs ---------------------------------------
-costs_pypsa = pd.read_csv(snakemake.input.pypsa_costs,
-                          index_col=[0,2]).sort_index()
-# rename some techs and convert units
-costs_pypsa = rename_pypsa_old(costs_pypsa)
+    # %% (2) -- get data from other sources which need formatting -----------------
+    # (a)  ---------- get old pypsa costs ---------------------------------------
+    costs_pypsa = pd.read_csv(snakemake.input.pypsa_costs,
+                            index_col=[0,2]).sort_index()
+    # rename some techs and convert units
+    costs_pypsa = rename_pypsa_old(costs_pypsa)
 
-# (b) ------- add costs from Fraunhofer ISE study --------------------------
-costs_ISE = pd.read_csv(snakemake.input.fraunhofer_costs,
-                        engine="python",
-                        index_col=[0,1],
-                        encoding = "ISO-8859-1")
-# rename + reorder to fit to other data
-costs_ISE = rename_ISE(costs_ISE)
-# add costs for gas pipelines
-data = pd.concat([data, costs_ISE.loc[["Gasnetz"]]], sort=True)
+    # (b) ------- add costs from Fraunhofer ISE study --------------------------
+    costs_ISE = pd.read_csv(snakemake.input.fraunhofer_costs,
+                            engine="python",
+                            index_col=[0,1],
+                            encoding = "ISO-8859-1")
+    # rename + reorder to fit to other data
+    costs_ISE = rename_ISE(costs_ISE)
+    # add costs for gas pipelines
+    data = pd.concat([data, costs_ISE.loc[["Gasnetz"]]], sort=True)
 
-data = add_manual_input(data)
-# add costs for home batteries
-data = add_home_battery_costs(data)
-# add SMR assumptions
-data = add_SMR_data(data)
-# add solar rooftop costs by taking the mean of commercial and residential
-data = add_mean_solar_rooftop(data)
-# %% (3) ------ add additional sources and save cost as csv ------------------
-# [RTD-target-multiindex-df]
-for year in years:
-    costs = (data[[year, "unit", "source", "further description"]]
-             .rename(columns={year: "value"}))
-    costs["value"] = costs["value"].astype(float)
+    data = add_manual_input(data)
+    # add costs for home batteries
+    data = add_home_battery_costs(data)
+    # add SMR assumptions
+    data = add_SMR_data(data)
+    # add solar rooftop costs by taking the mean of commercial and residential
+    data = add_mean_solar_rooftop(data)
+    # %% (3) ------ add additional sources and save cost as csv ------------------
+    # [RTD-target-multiindex-df]
+    for year in years:
+        costs = (data[[year, "unit", "source", "further description"]]
+                .rename(columns={year: "value"}))
+        costs["value"] = costs["value"].astype(float)
 
-    # biomass is differentiated by biomass CHP and HOP
-    costs.loc[('solid biomass', 'fuel'), 'value'] = 12
-    costs.loc[('solid biomass', 'fuel'), 'unit'] = 'EUR/MWh_th'
-    costs.loc[('solid biomass', 'fuel'), 'source'] = "JRC ENSPRESO ca avg for MINBIOWOOW1 (secondary forest residue wood chips), ENS_Ref for 2040"
+        # biomass is differentiated by biomass CHP and HOP
+        costs.loc[('solid biomass', 'fuel'), 'value'] = 12
+        costs.loc[('solid biomass', 'fuel'), 'unit'] = 'EUR/MWh_th'
+        costs.loc[('solid biomass', 'fuel'), 'source'] = "JRC ENSPRESO ca avg for MINBIOWOOW1 (secondary forest residue wood chips), ENS_Ref for 2040"
 
-    costs.loc[('digestible biomass', 'fuel'), 'value'] = 15
-    costs.loc[('digestible biomass', 'fuel'), 'unit'] = 'EUR/MWh_th'
-    costs.loc[('digestible biomass', 'fuel'), 'source'] = "JRC ENSPRESO ca avg for MINBIOAGRW1, ENS_Ref for 2040"
+        costs.loc[('digestible biomass', 'fuel'), 'value'] = 15
+        costs.loc[('digestible biomass', 'fuel'), 'unit'] = 'EUR/MWh_th'
+        costs.loc[('digestible biomass', 'fuel'), 'source'] = "JRC ENSPRESO ca avg for MINBIOAGRW1, ENS_Ref for 2040"
 
-    # add solar data from other source than DEA
-    if any([snakemake.config['solar_utility_from_vartiaien'], snakemake.config['solar_rooftop_from_etip']]):
-        costs = add_solar_from_other(costs)
-    else:
-        solar_techs = ['solar', 'solar-rooftop', 'solar-rooftop commercial',
-                       'solar-rooftop residential', 'solar-utility']
-        costs = adjust_for_inflation(costs, solar_techs, 2020)
+        # add solar data from other source than DEA
+        if any([snakemake.config['solar_utility_from_vartiaien'], snakemake.config['solar_rooftop_from_etip']]):
+            costs = add_solar_from_other(costs)
+        else:
+            solar_techs = ['solar', 'solar-rooftop', 'solar-rooftop commercial',
+                        'solar-rooftop residential', 'solar-utility']
+            costs = adjust_for_inflation(costs, solar_techs, 2020)
 
-    # adjust for inflation all techs in new DEA format
-    new_format_without_solar = [tech for tech in new_format if tech not in solar_techs]
-    costs = adjust_for_inflation(costs, new_format_without_solar, 2020)
-    # add desalination and clean water tank storage
-    costs = add_desalinsation_data(costs)
+        # adjust for inflation all techs in new DEA format
+        new_format_without_solar = [tech for tech in new_format if tech not in solar_techs]
+        costs = adjust_for_inflation(costs, new_format_without_solar, 2020)
+        # add desalination and clean water tank storage
+        costs = add_desalinsation_data(costs)
 
-    # add electrolyzer and fuel cell efficiency from other source than DEA
-    if snakemake.config['h2_from_budischak']:
-        costs = add_h2_from_other(costs)
+        # add electrolyzer and fuel cell efficiency from other source than DEA
+        if snakemake.config['h2_from_budischak']:
+            costs = add_h2_from_other(costs)
 
-    # add data from conventional carriers
-    costs = add_conventional_data(costs)
-    # CO2 intensity
-    costs = add_co2_intensity(costs)
+        # add data from conventional carriers
+        costs = add_conventional_data(costs)
+        # CO2 intensity
+        costs = add_co2_intensity(costs)
 
-    #carbon balances
-    costs = carbon_flow(costs,year)
+        #carbon balances
+        costs = carbon_flow(costs,year)
 
-    # include old pypsa costs
-    check = pd.concat([costs_pypsa, costs], sort=True, axis=1)
+        #energy penalty of carbon capture
+        costs = energy_penalty(costs)
 
-    # missing technologies
-    missing = costs_pypsa.index.levels[0].difference(costs.index.levels[0])
-    if (len(missing) & (year==years[0])):
-        print("************************************************************")
-        print("warning, in new cost assumptions the following components: ")
-        for i in range(len(missing)):
-            print("    ", i + 1, missing[i])
-        print(" are missing and the old cost assumptions are assumed.")
-        print("************************************************************")
+        # include old pypsa costs
+        check = pd.concat([costs_pypsa, costs], sort=True, axis=1)
 
-    to_add = costs_pypsa.loc[missing].drop("year", axis=1)
-    to_add.loc[:,"further description"] = " from old pypsa cost assumptions"
-    costs_tot = pd.concat([costs, to_add], sort=False)
+        # missing technologies
+        missing = costs_pypsa.index.levels[0].difference(costs.index.levels[0])
+        if (len(missing) & (year==years[0])):
+            print("************************************************************")
+            print("warning, in new cost assumptions the following components: ")
+            for i in range(len(missing)):
+                print("    ", i + 1, missing[i])
+            print(" are missing and the old cost assumptions are assumed.")
+            print("************************************************************")
 
-    # single components missing
-    comp_missing = costs_pypsa.index.difference(costs_tot.index)
-    if (year==years[0]):
-        print("single parameters of technologies are missing, using old PyPSA assumptions: ")
-        print(comp_missing)
-        print("old c_v and c_b values are assumed where given")
-    to_add = costs_pypsa.loc[comp_missing].drop("year", axis=1)
-    to_add.loc[:, "further description"] = " from old pypsa cost assumptions"
-    costs_tot = pd.concat([costs_tot, to_add], sort=False)
+        to_add = costs_pypsa.loc[missing].drop("year", axis=1)
+        to_add.loc[:,"further description"] = " from old pypsa cost assumptions"
+        costs_tot = pd.concat([costs, to_add], sort=False)
 
-    # unify the cost from DIW2010
-    costs_tot = unify_diw(costs_tot)
-    costs_tot.drop("fixed", level=1, inplace=True)
-    costs_tot.sort_index(inplace=True)
-    costs_tot = round(costs_tot, ndigits=snakemake.config.get("ndigits", 2))
-    costs_tot.to_csv([v for v in snakemake.output if str(year) in v][0])
+        # single components missing
+        comp_missing = costs_pypsa.index.difference(costs_tot.index)
+        if (year==years[0]):
+            print("single parameters of technologies are missing, using old PyPSA assumptions: ")
+            print(comp_missing)
+            print("old c_v and c_b values are assumed where given")
+        to_add = costs_pypsa.loc[comp_missing].drop("year", axis=1)
+        to_add.loc[:, "further description"] = " from old pypsa cost assumptions"
+        costs_tot = pd.concat([costs_tot, to_add], sort=False)
+
+        # unify the cost from DIW2010
+        costs_tot = unify_diw(costs_tot)
+        costs_tot.drop("fixed", level=1, inplace=True)
+        costs_tot.sort_index(inplace=True)
+        costs_tot = round(costs_tot, ndigits=snakemake.config.get("ndigits", 2))
+        costs_tot.to_csv([v for v in snakemake.output if str(year) in v][0])
