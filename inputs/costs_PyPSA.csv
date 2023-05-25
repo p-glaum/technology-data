@@ -212,12 +212,12 @@ decentral oil boiler,2030,investment,156.0140915953699,EUR/kWth,Palzer thesis (h
 decentral oil boiler,2030,lifetime,20.0,years,Palzer thesis (https://energiesysteme-zukunft.de/fileadmin/user_upload/Publikationen/PDFs/ESYS_Materialien_Optimierungsmodell_REMod-D.pdf)
 decentral oil boiler,2030,FOM,2.0,%/year,Palzer thesis (https://energiesysteme-zukunft.de/fileadmin/user_upload/Publikationen/PDFs/ESYS_Materialien_Optimierungsmodell_REMod-D.pdf)
 decentral oil boiler,2030,efficiency,0.9,per unit,Palzer thesis (https://energiesysteme-zukunft.de/fileadmin/user_upload/Publikationen/PDFs/ESYS_Materialien_Optimierungsmodell_REMod-D.pdf)
-offwind-ac-station,2030,investment,250,EUR/kWel,DEA https://ens.dk/en/our-services/projections-and-models/technology-data
-offwind-ac-connection-submarine,2030,investment,2800,EUR/MW/km,DEA https://ens.dk/en/our-services/projections-and-models/technology-data
-offwind-ac-connection-underground,2030,investment,1400,EUR/MW/km,DEA https://ens.dk/en/our-services/projections-and-models/technology-data
-offwind-dc-station,2030,investment,250,EUR/kWel,DEA https://ens.dk/en/our-services/projections-and-models/technology-data
-offwind-dc-connection-submarine,2030,investment,2800,EUR/MW/km,DEA https://ens.dk/en/our-services/projections-and-models/technology-data
-offwind-dc-connection-underground,2030,investment,1400,EUR/MW/km,DEA https://ens.dk/en/our-services/projections-and-models/technology-data
+offwind-near-station,2030,investment,250,EUR/kWel,DEA https://ens.dk/en/our-services/projections-and-models/technology-data
+offwind-near-connection-submarine,2030,investment,2800,EUR/MW/km,DEA https://ens.dk/en/our-services/projections-and-models/technology-data
+offwind-near-connection-underground,2030,investment,1400,EUR/MW/km,DEA https://ens.dk/en/our-services/projections-and-models/technology-data
+offwind-far-station,2030,investment,250,EUR/kWel,DEA https://ens.dk/en/our-services/projections-and-models/technology-data
+offwind-far-connection-submarine,2030,investment,2800,EUR/MW/km,DEA https://ens.dk/en/our-services/projections-and-models/technology-data
+offwind-far-connection-underground,2030,investment,1400,EUR/MW/km,DEA https://ens.dk/en/our-services/projections-and-models/technology-data
 offwind-float-station,2030,investment,250,EUR/kWel,DEA https://ens.dk/en/our-services/projections-and-models/technology-data
 offwind-float-connection-submarine,2030,investment,2800,EUR/MW/km,DEA https://ens.dk/en/our-services/projections-and-models/technology-data
 offwind-float-connection-underground,2030,investment,1400,EUR/MW/km,DEA https://ens.dk/en/our-services/projections-and-models/technology-data

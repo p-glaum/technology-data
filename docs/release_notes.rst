@@ -5,15 +5,24 @@ Release Notes
 Upcoming Release
 ================
 
-Updated technologies
- - updated cost assumptions for 'digestible biomass to hydrogen' and "solid biomass to hydrogen"
-- Fix: Unit for methanation investment costs is now correctly displayed as "EUR/kW_CH4" (`#82 <https://github.com/PyPSA/technology-data/issues/82#event-8638160137>`_)
+Technology-Data 0.6.0 (24 May 2023)
+===========================================
 
+* General:
+  - Fix 'further_description' column from 'manual_inputs.csv' not being correctly parsed by the workflow
+  - Adjust electrolysis currency year to 2015
+
+* Updated technologies
+  - updated cost assumptions for 'digestible biomass to hydrogen' and "solid biomass to hydrogen"
+  - Fix: Unit for methanation investment costs is now correctly displayed as "EUR/kW_CH4" (`#82 <https://github.com/PyPSA/technology-data/issues/82#event-8638160137>`_)
+  - Fix source and description for 'solar' and 'solar-rooftop' to correctly indicate how they are calculated
 
 * New technologies
- - new biomass technologies ('biogas CC', 'central gas CHP CC', 'central hydrogen CHP', 'central solid biomass CHP CC', 'central solid biomass CHP powerboost CC',
+  - 17 new energy storage technologies
+  - new biomass technologies ('biogas CC', 'central gas CHP CC', 'central hydrogen CHP', 'central solid biomass CHP CC', 'central solid biomass CHP powerboost CC',
 'direct firing gas', 'direct firing gas CC', 'direct firing solid fuels', 'direct firing solid fuels CC', 'electrobiofuels', 'solid biomass boiler steam CC', 'waste CHP', 'waste CHP CC',
 pelletizing cost for pellets from solid biomass residues)
+  - "utility-scale single-axis tracking" PV (cost assumptions)
   - H2 liquefaction (Conversion efficiency)
   - CH4 liquefaction (Conversion efficiency)
   - CO2 liquefaction (Conversion efficiency)
@@ -45,6 +54,7 @@ Technology-Data 0.5.0 (08 Februrary 2023)
   - new biomass technologies (BioSNG, BtL, biogas, biogas plus hydrogen, digestible biomass,digestible biomass to hydrogen, electric boiler steam, gas boiler steam, industrial heat pump high temperature, solid biomass boiler steam, solid bioass to hydrogen, biomass boiler for decentral heating
   - hydrogen storage tank type 1: Low pressure hydrogen tank storage (up to 200 bar)
   - hydrogen storage compressor: Compressor for filling hydrogen storage tanks (compression from 30 to 250 bar)
+  - 18 new energy storage technologies from PNNL "Energy Storage Grand Challenge Cost and Performance Assessment 2022"
 
 * Enable easy debugging of scripts by allowing python execution/ debugging in scripts
 
