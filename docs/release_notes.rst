@@ -5,6 +5,33 @@ Release Notes
 Upcoming Release
 ================
 
+* Add biomass-to-methanol route from DEA.
+
+* Add electric compression losses for hydrogen and gas pipelines from DEA.
+
+* Add methanol-to-kerosene from `Concawe report <https://www.concawe.eu/wp-content/uploads/Rpt_22-17.pdf>`_.
+
+* Add methanol-to-olefins/aromatics and steam cracker mostly from `DECHEMA report <https://dechema.de/dechema_media/Downloads/Positionspapiere/Technology_study_Low_carbon_energy_and_feedstock_for_the_European_chemical_industry.pdf>`_.
+
+Technology-Data 0.6.2 (7 August 2023)
+=====================================
+
+* Use DEA electrolysis and fuel cell assumptions by default.
+
+* Add steam generation of methanolisation process.
+
+* Use HVDC submarine cable cost from Härtel et al. (2017).
+
+Technology-Data 0.6.1 (4 August 2023)
+===========================================
+
+* New technologies
+  - direct iron ore reduction (cost assumptions, conversion efficiencies)
+  - dry bulk carrier Capesize (cost assumptions)
+  - electric arc furnace (cost assumptions, conversion efficiencies)
+  - shipping fuel methanol (cost assumptions, emission intensity)
+  - iron ore DRI-ready (cost assumptions)
+
 Technology-Data 0.6.0 (24 May 2023)
 ===========================================
 
@@ -35,6 +62,7 @@ pelletizing cost for pellets from solid biomass residues)
   - Haber-Bosch (Conversion efficiency)
   - air separation unit (Conversion efficiency)
   - direct air capture (Conversion efficiency)
+  - Added data for Enhanced Geothermal Systems, as given by Aghahosseini, Breyer 2020
 
 * Changed technologies
   - methanation (Conversion efficiency)
@@ -42,6 +70,8 @@ pelletizing cost for pellets from solid biomass residues)
 
 * Features
  - energy penalties for biomass usages, biogas and gas boilers with carbon capture (calculations will be provided in an upcoming paper
+* Bug fixes
+  - Fixed a bug that ommited 'further description' from manually added data
 
 Technology-Data 0.5.0 (08 Februrary 2023)
 ===========================================
