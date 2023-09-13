@@ -677,6 +677,11 @@ electrolysis,efficiency,0.715,per unit,"Danish Energy Agency, data_sheets_for_re
 electrolysis,efficiency-heat,0.1248,per unit,"Danish Energy Agency, data_sheets_for_renewable_fuels.xlsx",86 AEC 100MW:   - hereof recoverable for district heating
 electrolysis,investment,271.7192,EUR/kW_e,"Danish Energy Agency, data_sheets_for_renewable_fuels.xlsx",86 AEC 100MW:  Specific investment
 electrolysis,lifetime,32.0,years,"Danish Energy Agency, data_sheets_for_renewable_fuels.xlsx",86 AEC 100MW:  Technical lifetime
+electrolysis offshore,FOM,2.0,%/year,"Danish Energy Agency, data_sheets_for_renewable_fuels.xlsx",
+electrolysis offshore,efficiency,0.68,per unit,"Danish Energy Agency, data_sheets_for_renewable_fuels.xlsx",
+electrolysis offshore,efficiency-heat,0.1662,per unit,"Danish Energy Agency, data_sheets_for_renewable_fuels.xlsx",
+electrolysis offshore,investment,550.3029,EUR/kW_e,onshore +200,
+electrolysis offshore,lifetime,30.0,years,"Danish Energy Agency, data_sheets_for_renewable_fuels.xlsx",
 fuel cell,FOM,5.0,%/year,"Danish Energy Agency, technology_data_for_el_and_dh.xlsx",12 LT-PEMFC CHP:  Fixed O&M
 fuel cell,c_b,1.25,50oC/100oC,"Danish Energy Agency, technology_data_for_el_and_dh.xlsx",12 LT-PEMFC CHP:  Cb coefficient
 fuel cell,efficiency,0.5,per unit,"Danish Energy Agency, technology_data_for_el_and_dh.xlsx","12 LT-PEMFC CHP:  Electricity efficiency, annual average"
@@ -785,12 +790,14 @@ nuclear,efficiency,0.33,per unit,Lazard s Levelized Cost of Energy Analysis - Ve
 nuclear,fuel,2.6,EUR/MWh_th,Lazard s Levelized Cost of Energy Analysis - Version 13.0,
 nuclear,investment,7940.4514,EUR/kW_e,Lazard s Levelized Cost of Energy Analysis - Version 13.0,
 nuclear,lifetime,40.0,years,Lazard s Levelized Cost of Energy Analysis - Version 13.0,
-offshore-branch,FOM,0.35,%/year,Purvins et al. (2018): https://doi.org/10.1016/j.jclepro.2018.03.095 ., from old pypsa cost assumptions
-offshore-branch,investment,970.0,EUR/MW/km,"Härtel (2017), 10.1016/j.epsr.2017.06.008, B_avg", from old pypsa cost assumptions
-offshore-branch,lifetime,40.0,years,Purvins et al. (2018): https://doi.org/10.1016/j.jclepro.2018.03.095 ., from old pypsa cost assumptions
-offshore-node,FOM,2.0,%/year,"Hagspiel et al. (2014): doi:10.1016/j.energy.2014.01.025 , table A.2 .", from old pypsa cost assumptions
-offshore-node,investment,665.0,EUR/kWel,"Vrana,Härtel (2023), average cost for 1GW substation(N0+S0+(Np+Sp)*1GW/1GW", from old pypsa cost assumptions
-offshore-node,lifetime,40.0,years,"Hagspiel et al. (2014): doi:10.1016/j.energy.2014.01.025 , table A.2 .", from old pypsa cost assumptions
+offshore-branch-submarine,FOM,0.35,%/year,Purvins et al. (2018): https://doi.org/10.1016/j.jclepro.2018.03.095 .,
+offshore-branch-submarine,investment,960.9804,EUR/MW/km,"Vrana,Härtel (2023): https://doi.org/10.1109/EEM58374.2023.10161832",
+offshore-branch-submarine,lifetime,40.0,years,Purvins et al. (2018): https://doi.org/10.1016/j.jclepro.2018.03.095 .,
+offshore-branch-underground,FOM,0.35,%/year,Purvins et al. (2018): https://doi.org/10.1016/j.jclepro.2018.03.095 .,
+offshore-branch-underground,investment,608.6511,EUR/MW/km,"Vrana,Härtel (2023): https://doi.org/10.1109/EEM58374.2023.10161832",
+offshore-node,FOM,2.0,%/year,"Hagspiel et al. (2014): doi:10.1016/j.energy.2014.01.025 , table A.2 .",
+offshore-node,investment,602.311,EUR/kWel,"Vrana,Härtel (2023): https://doi.org/10.1109/EEM58374.2023.10161832,  average cost for 1GW substation(N0+S0+(Np+Sp)*1GW/1GW",
+offshore-node,lifetime,40.0,years,"Hagspiel et al. (2014): doi:10.1016/j.energy.2014.01.025 , table A.2 .",
 offwind,FOM,3.1923,%/year,DIW DataDoc http://hdl.handle.net/10419/80348, from old pypsa cost assumptions
 offwind,VOM,0.02,EUR/MWhel,RES costs made up to fix curtailment order, from old pypsa cost assumptions
 offwind,investment,2506.0,EUR/kWel,DIW DataDoc http://hdl.handle.net/10419/80348, from old pypsa cost assumptions

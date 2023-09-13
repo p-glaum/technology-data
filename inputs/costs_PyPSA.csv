@@ -218,9 +218,3 @@ offwind-far-station,2030,investment,250,EUR/kWel,DEA https://ens.dk/en/our-servi
 offwind-far-connection-submarine,2030,investment,2800,EUR/MW/km,DEA https://ens.dk/en/our-services/projections-and-models/technology-data
 offwind-float-station,2030,investment,250,EUR/kWel,DEA https://ens.dk/en/our-services/projections-and-models/technology-data
 offwind-float-connection-submarine,2030,investment,2800,EUR/MW/km,DEA https://ens.dk/en/our-services/projections-and-models/technology-data
-offshore-branch,2030,investment,970,EUR/MW/km,"Härtel (2017), 10.1016/j.epsr.2017.06.008, B_avg"
-offshore-branch,2030,FOM,0.35,%/year,Purvins et al. (2018): https://doi.org/10.1016/j.jclepro.2018.03.095 .
-offshore-branch,2030,lifetime,40,years,Purvins et al. (2018): https://doi.org/10.1016/j.jclepro.2018.03.095 .
-offshore-node,2030,investment,665,EUR/kWel,"Vrana,Härtel (2023), average cost for 1GW substation(N0+S0+(Np+Sp)*1GW/1GW"
-offshore-node,2030,FOM,2,%/year,"Hagspiel et al. (2014): doi:10.1016/j.energy.2014.01.025 , table A.2 ."
-offshore-node,2030,lifetime,40,years,"Hagspiel et al. (2014): doi:10.1016/j.energy.2014.01.025 , table A.2 ."
