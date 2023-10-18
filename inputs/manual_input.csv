@@ -317,5 +317,5 @@ offshore-branch-underground,FOM,2030,0.35,%/year,2020,Purvins et al. (2018): htt
 electrolysis offshore,FOM,2030,2.0,%/year,2020,"Danish Energy Agency, data_sheets_for_renewable_fuels.xlsx",
 electrolysis offshore,efficiency,2030,0.68,per unit,2020,"Danish Energy Agency, data_sheets_for_renewable_fuels.xlsx",
 electrolysis offshore,efficiency-heat,2030,0.1662,per unit,2020,"Danish Energy Agency, data_sheets_for_renewable_fuels.xlsx",
-electrolysis offshore,investment,2030,607.5789,EUR/kW_e,2020,onshore +200,
+electrolysis offshore,investment,2030,589.46,EUR/kW_e,2030,"Danish Energy Agency,500MW reference case, cost_performance_data_offshore_hydrogen_production.pdf",
 electrolysis offshore,lifetime,2030,30.0,years,2020,"Danish Energy Agency, data_sheets_for_renewable_fuels.xlsx",
