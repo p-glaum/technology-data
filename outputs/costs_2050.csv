@@ -887,8 +887,9 @@ electrolysis small,efficiency,0.6994,per unit,"Danish Energy Agency, data_sheets
 electrolysis small,efficiency-heat,0.1294,per unit,"Danish Energy Agency, data_sheets_for_renewable_fuels.xlsx",86 AEC 10 MW:   - hereof recoverable for district heating,2020.0
 electrolysis small,investment,475.0,EUR/kW_e,"Danish Energy Agency, data_sheets_for_renewable_fuels.xlsx",86 AEC 10 MW:  Specific investment,2020.0
 electrolysis small,lifetime,25.0,years,"Danish Energy Agency, data_sheets_for_renewable_fuels.xlsx",86 AEC 10 MW:  Technical lifetime of plant,2020.0
-enhanced-biomass-to-methanol,efficiency,1.479,per unit,Using biomass carbon content and carbon efficiency of 1 given in https://www.sciencedirect.com/science/article/pii/S0016236122035219, 0.3667/0.248,2030.0
-enhanced-biomass-to-methanol,hydrogen-input,0.988,per unit,Using co2 stored from biomass-to-methanol process and H2 input from methanolisation,1.138 / 0.248 * 0.2153,2030.0
+enhanced-biomass-to-methanol,carbon-efficiency,0.94,per unit,Using biomass carbon content and carbon efficiency of 0.94 given in https://www.sciencedirect.com/science/article/pii/S0016236122035219, ,2030.0
+enhanced-biomass-to-methanol,efficiency,1.39,per unit,Using biomass carbon content and carbon efficiency of 0.94 given in https://www.sciencedirect.com/science/article/pii/S0016236122035219, biomass co2 0.3667 * carbon efficiency 0.94 / carbon input methanolisation 0.248,2030.0
+enhanced-biomass-to-methanol,hydrogen-input,0.988,per unit,Using co2 stored from biomass-to-methanol process and H2 input from methanolisation,hydrogen input 1.138 / carbon input methanolisation 0.248 * (biomass stored 0.2153 - biomass co2 0.3667 * 0.06),2030.0
 fuel cell,FOM,5.0,%/year,"Danish Energy Agency, technology_data_for_el_and_dh.xlsx",12 LT-PEMFC CHP:  Fixed O&M,2015.0
 fuel cell,c_b,1.25,50oC/100oC,"Danish Energy Agency, technology_data_for_el_and_dh.xlsx",12 LT-PEMFC CHP:  Cb coefficient,2015.0
 fuel cell,efficiency,0.5,per unit,"Danish Energy Agency, technology_data_for_el_and_dh.xlsx","12 LT-PEMFC CHP:  Electricity efficiency, annual average",2015.0
