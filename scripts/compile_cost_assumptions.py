@@ -103,6 +103,7 @@ sheet_names = {
     "direct firing gas CC": "312.a Direct firing Natural Gas",
     "direct firing solid fuels": "312.b Direct firing Sold Fuels",
     "direct firing solid fuels CC": "312.b Direct firing Sold Fuels",
+    "direct firing electricity": "312.c Direct firing Electricity",
     "decentral ground-sourced heat pump": "207.7 Ground source existing",
     "decentral air-sourced heat pump": "207.3 Air to water existing",
     # 'decentral resistive heater': '216 Electric heating',
@@ -190,6 +191,7 @@ uncrtnty_lookup = {
     "direct firing gas CC": "H:I",
     "direct firing solid fuels": "H:I",
     "direct firing solid fuels CC": "H:I",
+    "direct firing electricity": "H:I",
     "decentral ground-sourced heat pump": "I:J",
     "decentral air-sourced heat pump": "I:J",
     "central water pit storage": "J:K",
@@ -261,6 +263,7 @@ cost_year_2019 = [
     "direct firing gas CC",
     "direct firing solid fuels",
     "direct firing solid fuels CC",
+    "direct firing electricity",
     "industrial heat pump medium temperature",
     "industrial heat pump high temperature",
     "electric boiler steam",
@@ -540,6 +543,7 @@ def get_data_DEA(tech, data_in, expectation=None):
         "direct firing gas CC",
         "direct firing solid fuels",
         "direct firing solid fuels CC",
+        "direct firing electricity", 
     ]:
         usecols = "A:E"
     elif tech in ["Fischer-Tropsch", "Haber-Bosch", "air separation unit"]:
