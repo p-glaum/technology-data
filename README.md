@@ -1,3 +1,8 @@
+<!--
+SPDX-FileCopyrightText: Contributors to technology-data <https://github.com/pypsa/technology-data>
+SPDX-License-Identifier: GPL-3.0-only
+-->
+
 ![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/pypsa/technology-data?include_prereleases)
 [![Documentation](https://readthedocs.org/projects/technology-data/badge/?version=latest)](https://technology-data.readthedocs.io/en/latest/?badge=latest)
 ![Licence](https://img.shields.io/github/license/pypsa/technology-data)
@@ -16,14 +21,12 @@ standardized cost years, technology names, units and source information. For fur
 
 
 The outputs are used in
-[PyPSA-Eur](https://github.com/PyPSA/pypsa-eur) and
-[PyPSA-Eur-Sec](https://github.com/PyPSA/pypsa-eur-sec).
+[PyPSA-Eur](https://github.com/PyPSA/pypsa-eur) and [PyPSA-Earth](https://github.com/pypsa-meets-earth/pypsa-earth).
 
 
 ## Licence
 
-Copyright 2019-2020 Marta Victoria (Aarhus University), Kun Zhu
-(Aarhus University), Elisabeth Zeyen (TUB), Tom Brown (TUB)
+Copyright 2019-2025 [Contributors](https://github.com/PyPSA/technology-data/graphs/contributors) to technology-data
 
 The code in `scripts/` is released as free software under the
 [GPLv3](http://www.gnu.org/licenses/gpl-3.0.en.html), see LICENSE.txt.
