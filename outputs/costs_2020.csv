@@ -648,6 +648,9 @@ biogas upgrading,FOM,17.0397,%/year,"Danish Energy Agency, data_sheets_for_renew
 biogas upgrading,VOM,4.1613,EUR/MWh output,"Danish Energy Agency, data_sheets_for_renewable_fuels.xlsx","82 Upgrading 3,000 Nm3 per h:  Variable O&M",2020.0
 biogas upgrading,investment,192.9697,EUR/kW,"Danish Energy Agency, data_sheets_for_renewable_fuels.xlsx","82 Upgrading 3,000 Nm3 per h:  investment (upgrading, methane redution and grid injection)",2020.0
 biogas upgrading,lifetime,20.0,years,"Danish Energy Agency, data_sheets_for_renewable_fuels.xlsx","82 Upgrading 3,000 Nm3 per h:  Technical lifetime",2020.0
+biogas-to-methanol,carbon-efficiency,0.93,per unit," ""Per MW biogas from Paper https://www.sciencedirect.com/science/article/pii/S0196890424001614?via%3Dihub#s0070""", figure 4.1 + 4.3,2030.0
+biogas-to-methanol,electricity-input,0.695,per unit," ""Per MW biogas from Paper https://www.sciencedirect.com/science/article/pii/S0196890424001614?via%3Dihub#s0070""", figure 4.1 + 4.3,2030.0
+biogas-to-methanol,methanol-output,1.254,per unit," ""Per MW biogas from Paper https://www.sciencedirect.com/science/article/pii/S0196890424001614?via%3Dihub#s0070""", figure 4.1 + 4.3,2030.0
 biomass,FOM,4.5269,%/year,DIW DataDoc http://hdl.handle.net/10419/80348, from old pypsa cost assumptions,2015.0
 biomass,efficiency,0.468,per unit,DIW DataDoc http://hdl.handle.net/10419/80348, from old pypsa cost assumptions,2015.0
 biomass,fuel,7.4076,EUR/MWhth,IEA2011b, from old pypsa cost assumptions,2015.0
