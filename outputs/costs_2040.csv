@@ -215,6 +215,10 @@ Diesel Truck Trailer max 56 tons,VOM,0.1068,EUR/km,"Danish Energy Agency, inputs
 Diesel Truck Trailer max 56 tons,efficiency,2.9453,kWh/km,"Danish Energy Agency, inputs/data_sheets_for_commercial_freight_and_passenger_transport_0.xlsx",Diesel L2,2022.0
 Diesel Truck Trailer max 56 tons,investment,177515.1425,EUR/vehicle,"Danish Energy Agency, inputs/data_sheets_for_commercial_freight_and_passenger_transport_0.xlsx",Diesel L2,2022.0
 Diesel Truck Trailer max 56 tons,lifetime,13.8,years,"Danish Energy Agency, inputs/data_sheets_for_commercial_freight_and_passenger_transport_0.xlsx",Diesel L2,2022.0
+European-oil-refinery,diesel-fraction,0.595,%,OMV refinery from https://www.statista.com/statistics/685062/yield-structure-central-european-refineries/,"heavy oil is split among kerosene, diesel and naphtha; calculation: (35+15)+50/74*14=59.459",2030.0
+European-oil-refinery,kerosene-fraction,0.071,%,OMV refinery from https://www.statista.com/statistics/685062/yield-structure-central-european-refineries/,"heavy oil is split among kerosene, diesel and naphtha; calculation:6+6/74*14=7.135",2030.0
+European-oil-refinery,naphtha-fraction,0.214,%,OMV refinery from https://www.statista.com/statistics/685062/yield-structure-central-european-refineries/,"heavy oil is split among kerosene, diesel and naphtha; calculation:18+18/(18+35+15+6)*14=21.4",2030.0
+European-oil-refinery,own-consumption-fraction,0.12,%,OMV refinery from https://www.statista.com/statistics/685062/yield-structure-central-european-refineries/,,2030.0
 FCV Bus city,FOM,0.0002,%/year,"Danish Energy Agency, inputs/data_sheets_for_commercial_freight_and_passenger_transport_0.xlsx",FCV B1,2022.0
 FCV Bus city,Motor size,420.3448,kW,"Danish Energy Agency, inputs/data_sheets_for_commercial_freight_and_passenger_transport_0.xlsx",FCV B1,2022.0
 FCV Bus city,VOM,0.0979,EUR/km,"Danish Energy Agency, inputs/data_sheets_for_commercial_freight_and_passenger_transport_0.xlsx",FCV B1,2022.0
@@ -253,11 +257,14 @@ Fischer-Tropsch,FOM,4.0,%/year,ICCT IRA e-fuels assumptions ,,2022.0
 Fischer-Tropsch,VOM,3.4029,EUR/MWh_FT,"Danish Energy Agency, data_sheets_for_renewable_fuels.xlsx",102 Hydrogen to Jet:  Variable O&M,2020.0
 Fischer-Tropsch,capture rate,0.9,per unit,Assumption based on doi:10.1016/j.biombioe.2015.01.006,,
 Fischer-Tropsch,carbondioxide-input,0.32,t_CO2/MWh_FT,ICCT IRA e-fuels assumptions ,"Input per 1t FT liquid fuels output, carbon efficiency increases with years (4.3, 3.9, 3.6, 3.3 t_CO2/t_FT from 2020-2050 with LHV 11.95 MWh_th/t_FT).",
+Fischer-Tropsch,diesel-fraction,0.249,%,Energetic share from https://www.sciencedirect.com/science/article/pii/S0360544215011767#fig5,,2030.0
 Fischer-Tropsch,efficiency,0.7,per unit,ICCT IRA e-fuels assumptions ,,
 Fischer-Tropsch,electricity-input,0.04,MWh_el/MWh_FT,ICCT IRA e-fuels assumptions ,"0.005 MWh_el input per FT output, output increasing from 2020 to 2050 (0.65, 0.7, 0.73, 0.75 MWh liquid FT output).",
 Fischer-Tropsch,hydrogen-input,1.43,MWh_H2/MWh_FT,ICCT IRA e-fuels assumptions ,"0.995 MWh_H2 per output, output increasing from 2020 to 2050 (0.65, 0.7, 0.73, 0.75 MWh liquid FT output).",
 Fischer-Tropsch,investment,1509724.4026,USD/MW_FT,ICCT IRA e-fuels assumptions ,"Well developed technology, no significant learning expected.",2022.0
+Fischer-Tropsch,kerosene-fraction,0.439,%,Energetic share from https://www.sciencedirect.com/science/article/pii/S0360544215011767#fig5,,2030.0
 Fischer-Tropsch,lifetime,30.0,years,ICCT IRA e-fuels assumptions ,,2020.0
+Fischer-Tropsch,naphtha-fraction,0.312,%,Energetic share from https://www.sciencedirect.com/science/article/pii/S0360544215011767#fig5,,2030.0
 Gasnetz,FOM,2.5,%,"WEGE ZU EINEM KLIMANEUTRALEN ENERGIESYSEM, Anhang zur Studie, Fraunhofer-Institut für Solare Energiesysteme ISE, Freiburg",Gasnetz,2020.0
 Gasnetz,investment,28.0,EUR/kWGas,"WEGE ZU EINEM KLIMANEUTRALEN ENERGIESYSEM, Anhang zur Studie, Fraunhofer-Institut für Solare Energiesysteme ISE, Freiburg",Gasnetz,2020.0
 Gasnetz,lifetime,30.0,years,"WEGE ZU EINEM KLIMANEUTRALEN ENERGIESYSEM, Anhang zur Studie, Fraunhofer-Institut für Solare Energiesysteme ISE, Freiburg",Gasnetz,2020.0

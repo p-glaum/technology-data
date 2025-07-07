@@ -508,3 +508,10 @@ enhanced-biomass-to-methanol,carbon-efficiency,2030,0.94,per unit, 2030,"Using b
 biogas-to-methanol,methanol-output,2030,1.254,per unit, 2030, "Per MW biogas from Paper https://www.sciencedirect.com/science/article/pii/S0196890424001614?via%3Dihub#s0070", figure 4.1 + 4.3
 biogas-to-methanol,electricity-input,2030,0.695,per unit, 2030, "Per MW biogas from Paper https://www.sciencedirect.com/science/article/pii/S0196890424001614?via%3Dihub#s0070", figure 4.1 + 4.3
 biogas-to-methanol,carbon-efficiency,2030,0.93,per unit, 2030, "Per MW biogas from Paper https://www.sciencedirect.com/science/article/pii/S0196890424001614?via%3Dihub#s0070", figure 4.1 + 4.3
+Fischer-Tropsch,naphtha-fraction,2030,0.312,%,2030,Energetic share from https://www.sciencedirect.com/science/article/pii/S0360544215011767#fig5,
+Fischer-Tropsch,kerosene-fraction,2030,0.439,%,2030,Energetic share from https://www.sciencedirect.com/science/article/pii/S0360544215011767#fig5,
+Fischer-Tropsch,diesel-fraction,2030,0.249,%,2030,Energetic share from https://www.sciencedirect.com/science/article/pii/S0360544215011767#fig5,
+European-oil-refinery,naphtha-fraction,2030,0.214,%,2030,OMV refinery from https://www.statista.com/statistics/685062/yield-structure-central-european-refineries/,"heavy oil is split among kerosene, diesel and naphtha; calculation:18+18/(18+35+15+6)*14=21.4"
+European-oil-refinery,kerosene-fraction,2030,0.071 ,%,2030,OMV refinery from https://www.statista.com/statistics/685062/yield-structure-central-european-refineries/,"heavy oil is split among kerosene, diesel and naphtha; calculation:6+6/74*14=7.135"
+European-oil-refinery,diesel-fraction,2030,0.595,%,2030,OMV refinery from https://www.statista.com/statistics/685062/yield-structure-central-european-refineries/,"heavy oil is split among kerosene, diesel and naphtha; calculation: (35+15)+50/74*14=59.459"
+European-oil-refinery,own-consumption-fraction,2030,0.12,%,2030,OMV refinery from https://www.statista.com/statistics/685062/yield-structure-central-european-refineries/,
