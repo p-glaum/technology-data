@@ -633,14 +633,14 @@ biochar pyrolysis,lifetime,25.0,years,"Danish Energy Agency, data_sheets_for_ren
 biochar pyrolysis,yield-biochar,0.0582,ton biochar/MWh_feedstock,"Danish Energy Agency, data_sheets_for_renewable_fuels.xlsx","105 Slow pyrolysis, Straw:  yield biochar",2020.0
 biodiesel crops,fuel,137.6508,EUR/MWhth,"JRC ENSPRESO ca avg for MINBIORPS1 (rape seed), ENS_BaU_GFTM",,2010.0
 bioethanol crops,fuel,82.4367,EUR/MWhth,"JRC ENSPRESO ca avg for MINBIOCRP11 (Bioethanol barley, wheat, grain maize, oats, other cereals and rye), ENS_BaU_GFTM",,2010.0
-biogas,CO2 stored,0.0868,tCO2/MWh_th,"Stoichiometric calculation, doi:10.1016/j.apenergy.2022.120016",,
+biogas,CO2 stored,0.1447,tCO2/MWh_th,"Stoichiometric calculation, doi:10.1016/j.apenergy.2022.120016",,
 biogas,FOM,7.7769,%/year,"Danish Energy Agency, data_sheets_for_renewable_fuels.xlsx","81 Biogas, Basic plant, small:  Total O&M",2020.0
 biogas,capture rate,0.9,per unit,Assumption based on doi:10.1016/j.biombioe.2015.01.006,,
 biogas,efficiency,1.0,per unit,Assuming input biomass is already given in biogas output,,
 biogas,fuel,62.4351,EUR/MWhth,JRC and Zappa, from old pypsa cost assumptions,2015.0
 biogas,investment,955.1865,EUR/kW,"Danish Energy Agency, data_sheets_for_renewable_fuels.xlsx","81 Biogas, Basic plant, small:  Specific investment",2020.0
 biogas,lifetime,20.0,years,"Danish Energy Agency, data_sheets_for_renewable_fuels.xlsx","81 Biogas, Basic plant, small:  Technical lifetime",2020.0
-biogas CC,CO2 stored,0.0868,tCO2/MWh_th,"Stoichiometric calculation, doi:10.1016/j.apenergy.2022.120016",,
+biogas CC,CO2 stored,0.1447,tCO2/MWh_th,"Stoichiometric calculation, doi:10.1016/j.apenergy.2022.120016",,
 biogas CC,FOM,7.7769,%/year,"Danish Energy Agency, data_sheets_for_renewable_fuels.xlsx","81 Biogas, Basic plant, small:  Total O&M",2020.0
 biogas CC,capture rate,0.9,per unit,Assumption based on doi:10.1016/j.biombioe.2015.01.006,,
 biogas CC,efficiency,1.0,per unit,Assuming input biomass is already given in biogas output,,
@@ -973,8 +973,8 @@ electrolysis small,efficiency-heat,0.2228,per unit,"Danish Energy Agency, data_s
 electrolysis small,investment,875.0,EUR/kW_e,"Danish Energy Agency, data_sheets_for_renewable_fuels.xlsx",86 AEC 10 MW:  Specific investment,2020.0
 electrolysis small,lifetime,25.0,years,"Danish Energy Agency, data_sheets_for_renewable_fuels.xlsx",86 AEC 10 MW:  Technical lifetime of plant,2020.0
 enhanced-biomass-to-methanol,carbon-efficiency,0.94,per unit,Using biomass carbon content and carbon efficiency of 0.94 given in https://www.sciencedirect.com/science/article/pii/S0016236122035219, ,2030.0
-enhanced-biomass-to-methanol,efficiency,1.39,per unit,Using biomass carbon content and carbon efficiency of 0.94 given in https://www.sciencedirect.com/science/article/pii/S0016236122035219, biomass co2 0.3667 * carbon efficiency 0.94 / carbon input methanolisation 0.248,2030.0
-enhanced-biomass-to-methanol,hydrogen-input,0.988,per unit,Using co2 stored from biomass-to-methanol process and H2 input from methanolisation,hydrogen input 1.138 / carbon input methanolisation 0.248 * (biomass stored 0.2153 - biomass co2 0.3667 * 0.06),2030.0
+enhanced-biomass-to-methanol,efficiency,1.39,per unit,Using biomass carbon content and carbon efficiency of 0.94 given in https://www.sciencedirect.com/science/article/pii/S0016236122035219, t_CO2/MWh_bio 0.3667 * carbon efficiency 0.94 / t_CO2/MWh_MeOH 0.248 = 1.39,2030.0
+enhanced-biomass-to-methanol,hydrogen-input,0.89,per unit,Using H2 input from methanolisation and difference between standard and enhanced biomass-to-methanol efficiency,MWh_H2/MWh_MeOH 1.138 * (MWh_MeOH/MWh_bio 1.39 (enhanced) - MWh_MeOH/MWh_bio 0.61 (standard)) = 0.89,2030.0
 fuel cell,FOM,5.0,%/year,"Danish Energy Agency, technology_data_for_el_and_dh.xlsx",12 LT-PEMFC CHP:  Fixed O&M,2015.0
 fuel cell,c_b,1.25,50oC/100oC,"Danish Energy Agency, technology_data_for_el_and_dh.xlsx",12 LT-PEMFC CHP:  Cb coefficient,2015.0
 fuel cell,efficiency,0.5,per unit,"Danish Energy Agency, technology_data_for_el_and_dh.xlsx","12 LT-PEMFC CHP:  Electricity efficiency, annual average",2015.0
